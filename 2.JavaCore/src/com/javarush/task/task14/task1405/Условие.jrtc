@@ -1,0 +1,10 @@
+<div class="wdghtml" taskKey="com.javarush.task.task14.task1405">
+<h3>Food</h3>
+<p>1. Реализовать интерфейс <mark class="red">Selectable</mark> в классе <span class="text-corporate"><strong>Food</strong></span>.<br />
+2. Метод <mark>onSelect()</mark> должен выводить на экран фразу &#171;<em><strong>food was selected</strong></em>&#171;.<br />
+3. Подумай, какие методы можно вызвать для переменной <mark class="user">food</mark> и какие для <mark class="user">selectable</mark>.<br />
+4. В методе <mark>foodMethods</mark> вызови методы <mark>onSelect</mark>, eat, если это возможно.<br />
+5. В методе <mark>selectableMethods</mark> вызови методы <mark>onSelect</mark>, <mark>eat</mark>, если это возможно.<br />
+6. Явное приведение типов не использовать.</p>
+
+</div>
