@@ -1,0 +1,7 @@
+<div class="wdghtml" taskKey="com.javarush.task.task14.task1403">
+<h3>Building и School</h3>
+<p>1. Расставь правильно наследование между <span class="text-corporate"><strong>Building</strong></span>(<strong>здание</strong>) и <span class="text-corporate"><strong>School</strong></span>(<strong>здание школы</strong>).<br />
+2. Подумай, объект какого класса должны возвращать методы <mark>getSchool</mark> и <mark>getBuilding</mark>.<br />
+3. Измени <span class="text-neon"><strong>null</strong></span> на объект класса <span class="text-corporate"><strong>Building</strong></span> или <span class="text-corporate"><strong>School</strong></span>.</p>
+
+</div>
