@@ -1,0 +1,5 @@
+<div class="wdghtml" taskKey="com.javarush.task.task14.task1401">
+<h3>Bingo!</h3>
+<p>Исправь строчку &#8216;<span class="text-neon">Object animal = new Pet();</span>&#8216; в методе <mark>main</mark> так, чтобы программа вывела &#171;<em><strong>Bingo!</strong></em>&#171;.</p>
+
+</div>
