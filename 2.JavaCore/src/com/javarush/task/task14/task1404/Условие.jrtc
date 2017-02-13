@@ -1,0 +1,9 @@
+<div class="wdghtml" taskKey="com.javarush.task.task14.task1404">
+<h3>Коты</h3>
+<p>1. Считывать <strong>строки</strong>(<strong>параметры</strong>) с консоли, пока пользователь не введет пустую <strong>строку</strong>(<strong>Enter</strong>).<br />
+2. Каждый параметр соответствует <strong>имени</strong> <strong>кота</strong>.</p>
+<p><strong>Для каждого параметра:</strong><br />
+3. Создать объект <mark class="green">cat класса Cat</mark>, который равен коту из <mark>getCatByKey(String <strong>параметр</strong>)</mark>.<br />
+4. Вывести на экран <mark class="green">cat</mark><mark>.toString()</mark>.</p>
+
+</div>
