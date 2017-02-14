@@ -1,0 +1,9 @@
+<div class="wdghtml" taskKey="com.javarush.task.task14.task1410">
+<h3>Дегустация вин</h3>
+<p>1. Создать абстрактный класс <span class="text-corporate"><strong>Drink</strong></span> с реализованным методом <mark>public void taste()</mark>, который выводит в консоль &#171;<em><strong>Вкусно</strong></em>&#171;.<br />
+2. Создать класс <span class="text-corporate"><strong>Wine</strong></span>, который наследуется от <span class="text-corporate"><strong>Drink</strong></span>, с реализованным методом <mark>public String getHolidayName()</mark>, который возвращает строку &#171;<em><strong>День Рождения</strong></em>&#171;.<br />
+3. Создать класс <span class="text-corporate"><strong>BubblyWine</strong></span>, который наследуется от <span class="text-corporate"><strong>Wine</strong></span>, с реализованным методом <mark>public String getHolidayName()</mark>, который возвращает строку &#171;<em><strong>Новый Год</strong></em>&#171;.<br />
+4. Написать реализацию методов <mark>getDeliciousDrink</mark>, <mark>getWine</mark>, <mark>getBubblyWine</mark>.<br />
+5. Все классы и интерфейс должны находиться в отдельных файлах.</p>
+
+</div>
