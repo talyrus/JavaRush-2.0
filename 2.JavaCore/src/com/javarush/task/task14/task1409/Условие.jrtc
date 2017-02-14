@@ -1,0 +1,11 @@
+<div class="wdghtml" taskKey="com.javarush.task.task14.task1409">
+<h3>Мосты</h3>
+<p>1. Создать интерфейс <mark class="red">Bridge</mark> с методом <mark>int getCarsCount()</mark>.<br />
+2. Создать классы <span class="text-corporate"><strong>WaterBridge</strong></span> и <span class="text-corporate"><strong>SuspensionBridge</strong></span>, которые реализуют интерфейс <mark class="red">Bridge</mark>.<br />
+3. Метод <mark>getCarsCount()</mark> должен возвращать любое фиксированное значение типа <span class="text-corporate">int</span>.<br />
+4. Метод <mark>getCarsCount()</mark> должен возвращать различные значения для различных классов.<br />
+5. В классе <span class="text-corporate"><strong>Solution</strong></span> создать публичный метод <mark>println(Bridge <strong>bridge</strong>)</mark>.<br />
+6. В методе <mark>println</mark> вывести на консоль значение <mark>getCarsCount()</mark> для объекта <mark class="green">bridge</mark>.<br />
+7. Каждый класс и интерфейс должны быть в отдельных файлах.</p>
+
+</div>
