@@ -1,0 +1,22 @@
+<div class="wdghtml" taskKey="com.javarush.task.task14.task1408">
+<h3>Куриная фабрика</h3>
+<p>Написать <span class="text-red">Фабрику(<strong>Factory</strong>)</span> по производству <strong>кур</strong>(<span class="text-corporate"><strong>Hen</strong></span>):</p>
+<p>1. Создать класс <span class="text-corporate"><strong>Hen</strong></span>.<br />
+1.1. Сделать его абстрактным.<br />
+1.2. Добавить в класс абстрактный метод <mark>int getCountOfEggsPerMonth()</mark>.<br />
+1.3. Добавить в класс метод <mark>String getDescription()</mark>, который возвращает строку &#171;<em><strong>Я &#8212; курица.</strong></em>&#171;.<br />
+2. Создать класс <span class="text-corporate"><strong>RussianHen</strong></span>, который наследуется от <span class="text-corporate"><strong>Hen</strong></span>.<br />
+3. Создать класс <span class="text-corporate"><strong>UkrainianHen</strong></span>, который наследуется от <span class="text-corporate"><strong>Hen</strong></span>.<br />
+4. Создать класс <span class="text-corporate"><strong>MoldovanHen</strong></span>, который наследуется от <span class="text-corporate"><strong>Hen</strong></span>.<br />
+5. Создать класс <span class="text-corporate"><strong>BelarusianHen</strong></span>, который наследуется от <span class="text-corporate"><strong>Hen</strong></span>.<br />
+6. В каждом из четырех последних классов написать свою реализацию метода <mark>getCountOfEggsPerMonth</mark>.<br />
+Методы должны возвращать <strong>количество яиц в месяц</strong> от данного типа куриц.<br />
+7. В каждом из четырех последних классов написать свою реализацию метода <mark>getDescription</mark>.</p>
+<p><strong>Методы должны возвращать строку вида:</strong><br />
+<strong>&lt;<span class="text-user">getDescription()</span> родительского класса&gt;</strong> + <strong>&lt;&#187; Моя страна &#8212; <span class="text-user">Sssss</span>. Я несу <span class="text-user">N</span> яиц в месяц.&#187;&gt;</strong><br />
+где <mark class="user">Sssss</mark> &#8212; название страны<br />
+где <mark class="user">N</mark> &#8212; количество яиц в месяц</p>
+<p>8. В классе <span class="text-corporate"><strong>HenFactory</strong></span> реализовать метод <span class="text-corporate"><strong>getHen</strong></span>, который возвращает соответствующую стране породу кур.<br />
+9. Все созданные вами классы должны быть в отдельных файлах.</p>
+
+</div>
