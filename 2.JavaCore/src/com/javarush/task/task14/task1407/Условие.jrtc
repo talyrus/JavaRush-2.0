@@ -1,0 +1,8 @@
+<div class="wdghtml" taskKey="com.javarush.task.task14.task1407">
+<h3>Player and Dancer</h3>
+<p>1. Подумать, что делает программа.<br />
+2. Изменить метод <mark>haveRest</mark> так, чтобы он вызывал метод<br />
+&#8212; <mark>play</mark>, если <mark class="green">person</mark> имеет тип <span class="text-corporate">Player</span>.<br />
+&#8212; <mark>dance</mark>, если <mark class="green">person</mark> имеет тип <span class="text-corporate">Dancer</span>.</p>
+
+</div>
