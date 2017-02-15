@@ -47,7 +47,7 @@ public class Solution {
 
         @Override
         Swimmable getCurrentAnimal() {
-            return null;
+            return this;
         }
     }
 
@@ -59,7 +59,7 @@ public class Solution {
 
         @Override
         Swimmable getCurrentAnimal() {
-            return null;
+            return this;
         }
     }
 
