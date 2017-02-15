@@ -1,0 +1,17 @@
+<div class="wdghtml" taskKey="com.javarush.task.task14.task1414">
+<h3>MovieFactory</h3>
+<p><strong>Расширение функционала по аналогии, чтение с консоли:</strong><br />
+1. Разобраться, что программа умеет делать.<br />
+2. Все классы должны быть внутри класса <span class="text-corporate"><strong>Solution</strong></span>.<br />
+3. Добавить классы <span class="text-corporate"><strong>Cartoon</strong></span>, <span class="text-corporate"><strong>Thriller</strong></span>.<br />
+4. Разобраться, как мы получаем объект класса <span class="text-corporate"><strong>SoapOpera</strong></span> по ключу &#171;<em><strong>soapOpera</strong></em>&#171;.</p>
+<p><strong>Аналогично получению объекта SoapOpera сделать:</strong><br />
+5. Добавить в <mark class="green">MovieFactory</mark>.<mark>getMovie</mark> получение объекта <mark class="green">Cartoon</mark> для ключа &#171;<em><strong>cartoon</strong></em>&#171;.<br />
+6. Добавить в <mark class="green">MovieFactory</mark>.<mark>getMovie</mark> получение объекта <mark class="green">Thriller</mark> для ключа &#171;<em><strong>thriller</strong></em>&#171;.<br />
+7. <strong>Считать</strong> с консоли несколько ключей (строк).<br />
+7.1. Ввод заканчивается, как только вводится строка не совпадающая с одной из: &#171;<em><strong>cartoon</strong></em>&#171;, &#171;<em><strong>thriller</strong></em>&#171;, &#171;<em><strong>soapOpera</strong></em>&#171;.<br />
+8. Создать переменную <mark class="user">movie</mark> класса <span class="text-corporate"><strong>Movie</strong></span> и для каждой введенной строки(<strong>ключа</strong>):<br />
+8.1. Получить объект используя <mark class="green">MovieFactory</mark>.<mark>getMovie</mark> и присвоить его переменной movie.<br />
+8.2. Вывести на экран <mark class="green">movie</mark>.<mark>getClass()</mark>.<mark>getSimpleName()</mark>.</p>
+
+</div>
