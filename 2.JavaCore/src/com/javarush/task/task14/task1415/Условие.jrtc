@@ -1,0 +1,12 @@
+<div class="wdghtml" taskKey="com.javarush.task.task14.task1415">
+<h3>Клининговый центр</h3>
+<p>1. Реализовать метод <mark>cleanAllApartments</mark>.<br />
+Для каждого объекта из <strong><span class="text-corporate">apartments</span></strong>:<br />
+2. Для однокомнатных квартир (<span class="text-corporate"><strong>Apt1Room</strong></span>) вызвать метод <mark>clean1Room</mark>.<br />
+т.е. если объект типа <span class="text-corporate"><strong>Apt1Room</strong></span>, то вызвать у него метод <mark>clean1Room</mark>.<br />
+3. Для двухкомнатных квартир (<span class="text-corporate"><strong>Apt2Room</strong></span>) вызвать метод <mark>clean2Rooms</mark><br />
+т.е. если объект типа <span class="text-corporate"><strong>Apt2Room</strong></span>, то вызвать у него метод <mark>clean2Rooms</mark>.<br />
+4. Для трехкомнатных квартир (<span class="text-corporate"><strong>Apt3Room</strong></span>) вызвать метод <mark>clean3Rooms</mark><br />
+т.е. если объект типа <span class="text-corporate"><strong>Apt3Room</strong></span>, то вызвать у него метод <mark>clean3Rooms</mark>.</p>
+
+</div>
