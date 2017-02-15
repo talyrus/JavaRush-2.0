@@ -1,0 +1,7 @@
+<div class="wdghtml" taskKey="com.javarush.task.task14.task1412">
+<h3>Реализовать метод printMainInfo</h3>
+<p>1. Напиши реализацию метода <mark>printMainInfo</mark>, чтобы:<br />
+1.1. Если в метод передают объект типа <span class="text-corporate"><strong>Drawable</strong></span>, у этого объекта вызывался метод <mark>draw</mark>.<br />
+1.2. Если в метод передают объект типа <span class="text-corporate"><strong>Movable</strong></span>, у этого объекта вызывался метод <mark>move</mark>.</p>
+
+</div>
