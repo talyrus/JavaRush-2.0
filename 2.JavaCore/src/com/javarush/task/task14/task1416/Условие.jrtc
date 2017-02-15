@@ -1,0 +1,10 @@
+<div class="wdghtml" taskKey="com.javarush.task.task14.task1416">
+<h3>Исправление ошибок</h3>
+<p>1. Подумай, как связаны интерфейсы <mark class="red">Swimmable</mark>(<strong>способен плавать</strong>) и <mark class="red">Walkable</mark>(<strong>способен ходить</strong>) с классом <span class="text-corporate"><strong>OceanAnimal</strong></span>(<strong>животное океана</strong>).<br />
+2. Расставь правильно наследование интерфейсов и класса <span class="text-corporate"><strong>OceanAnimal</strong></span>.<br />
+3. Подумай, как могут быть связаны классы <span class="text-corporate"><strong>Orca</strong></span>(<strong>Косатка</strong>), <span class="text-corporate"><strong>Whale</strong></span>(<strong>Кит</strong>), <span class="text-corporate"><strong>Otter</strong></span>(<strong>Выдра</strong>) с классом <span class="text-corporate"><strong>OceanAnimal</strong></span>.<br />
+4. Расставь правильно наследование между классами <span class="text-corporate"><strong>Orca</strong></span>, <span class="text-corporate"><strong>Whale</strong></span>, <span class="text-corporate"><strong>Otter</strong></span> и классом <span class="text-corporate"><strong>OceanAnimal</strong></span>.<br />
+5. Подумай, какой класс должен реализовать интерфейс <mark class="red">Walkable</mark> и добавить интерфейс этому классу.<br />
+6. Подумай, какое животное еще не умеет плавать и добавить ему интерфейс <mark class="red">Swimable</mark>.</p>
+
+</div>
