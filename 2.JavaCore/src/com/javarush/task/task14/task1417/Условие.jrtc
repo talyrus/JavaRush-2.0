@@ -1,0 +1,11 @@
+<div class="wdghtml" taskKey="com.javarush.task.task14.task1417">
+<h3>Валюты</h3>
+<p>Расширить функциональность программы, которая позволит производить манипуляции с валютами.</p>
+<p>1. В абстрактном классе <span class="text-corporate"><strong>Money</strong></span> создай приватное поле <mark class="user">amount</mark> типа <span class="text-corporate">double</span>.<br />
+2. Создай публичный геттер для поля <mark class="user">amount</mark>(<mark>public double getAmount()</mark>), чтобы к этому полю можно было получить доступ извне класса <strong><span class="text-corporate">Money</span></strong>.<br />
+3. В отдельном файле создай классы <span class="text-corporate"><strong>Hrivna</strong></span>, <span class="text-corporate"><strong>Ruble</strong></span> и <span class="text-corporate"><strong>USD</strong></span>, которые будут являться потомками класса <span class="text-corporate"><strong>Money</strong></span>.<br />
+4. В классах <span class="text-corporate"><strong>Hrivna</strong></span>, <span class="text-corporate"><strong>Ruble</strong></span> и <span class="text-corporate"><strong>USD</strong></span> реализуй метод <mark>getCurrencyName</mark> который будет возвращать название соответствующей валюты(<strong>строку</strong>) в виде аббревиатуры(<strong>USD, HRN, RUB</strong>).<br />
+5. В классах <span class="text-corporate"><strong>Hrivna</strong></span>, <span class="text-corporate"><strong>Ruble</strong></span> и <span class="text-corporate"><strong>USD</strong></span> реализуй публичный(<strong>public</strong>) конструктор, который принимает один параметр и вызывает конструктор базового класса(<strong>super</strong>) с этим параметром.<br />
+6. Заполни список <strong><span class="text-red">allMoney</span></strong> объектами всех возможных, в рамках условия задачи и функциональности программы, валют.</p>
+
+</div>
