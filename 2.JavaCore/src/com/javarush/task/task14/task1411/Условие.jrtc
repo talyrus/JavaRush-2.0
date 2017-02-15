@@ -1,0 +1,15 @@
+<div class="wdghtml" taskKey="com.javarush.task.task14.task1411">
+<h3>User, Looser, Coder and Proger</h3>
+<p>1. Ввести [<strong>в цикле]</strong> с клавиатуры несколько строк (<strong>ключей</strong>).<br />
+Строки(ключи) могут быть такими: &#171;<em><strong>user</strong></em>&#171;, &#171;<em><strong>loser</strong></em>&#171;, &#171;<em><strong>coder</strong></em>&#171;, &#171;<em><strong>proger</strong></em>&#171;.<br />
+Ввод окончен, когда строка не совпадает ни с одной из выше указанных.</p>
+<p>2. Для каждой <strong>введенной</strong> строки нужно:<br />
+2.1. Создать соответствующий объект [см. <mark class="green"><strong>Person.java</strong></mark>], например, для строки &#171;<em><strong>user</strong></em>&#187; нужно создать объект класса <strong><span class="text-corporate">User</span></strong>.<br />
+2.2. Передать этот объект в метод <mark>doWork</mark>.</p>
+<p>3. Написать реализацию метода <mark>doWork</mark>, который:<br />
+3.1. Вызывает метод <mark>live()</mark> у переданного обекта, если этот объект (person) имеет тип <span class="text-corporate"><strong>User</strong></span>.<br />
+3.2. Вызывает метод <mark>doNothing()</mark>, если person имеет тип <span class="text-corporate"><strong>Loser</strong></span>.<br />
+3.3. Вызывает метод <mark>coding()</mark>, если person имеет тип <span class="text-corporate"><strong>Coder</strong></span>.<br />
+3.4. Вызывает метод <mark>enjoy()</mark>, если person имеет тип <span class="text-corporate"><strong>Proger</strong></span>.</p>
+
+</div>
