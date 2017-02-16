@@ -1,0 +1,12 @@
+<div class="wdghtml" taskKey="com.javarush.task.task14.task1421">
+<h3>Singleton</h3>
+<p>Класс является синглтоном (реализует паттерн <strong><span class="text-yellow">Singleton</span></strong>), если позволяет создать всего один объект своего типа.</p>
+<p>Реализовать <span class="text-yellow"><strong>Singleton pattern</strong></span>:<br />
+1. Создай класс <span class="text-corporate"><strong>Singleton</strong></span> в отдельном файле.<br />
+2. Добавь в него статический метод <mark>getInstance()</mark>.<br />
+3. Метод <mark>getInstance</mark> должен возвращать один и тот же объект класса <span class="text-corporate"><strong>Singleton</strong></span> при любом вызове метода <mark>getInstance</mark>.<br />
+4. Подумай, каким образом можно запретить создание других объектов этого класса.<br />
+5. Сделай все конструкторы в классе <span class="text-corporate"><strong>Singleton</strong></span> приватными (<strong>private</strong>).<br />
+6. В итоге должна быть возможность создать объект (экземпляр класса) <strong>ТОЛЬКО</strong> используя метод <mark>getInstance</mark>.</p>
+
+</div>
