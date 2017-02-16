@@ -1,0 +1,6 @@
+<div class="wdghtml" taskKey="com.javarush.task.task14.task1419">
+<h3>Нашествие исключений</h3>
+<p>Заполни список <strong><span class="text-red">exceptions</span></strong> десятью(<span class="text-user"><strong>10</strong></span>) различными исключениями.<br />
+Первое исключение уже реализовано в методе <mark>initExceptions</mark>.</p>
+
+</div>
