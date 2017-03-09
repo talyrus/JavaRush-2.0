@@ -11,11 +11,11 @@ public class Solution {
     public static Map<Double, String> labels = new HashMap<Double, String>();
 
     static {
-        labels.put(1.1,"1");
-        labels.put(2.1,"2");
-        labels.put(3.1,"3");
-        labels.put(4.1,"4");
-        labels.put(5.1,"5");
+        labels.put(1.1,"one");
+        labels.put(2.1,"two");
+        labels.put(3.1,"three");
+        labels.put(4.1,"four");
+        labels.put(5.1,"five");
     }
 
 
