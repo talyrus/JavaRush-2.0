@@ -24,7 +24,7 @@ public class Solution {
     }
 
     public static class Politician extends Thread {
-        private int countSounds;
+        private int countSounds;  //volatile - удалили, чтобы значение countSounds не изменялось другими потоками
 
         public Politician(String name) {
             super(name);
