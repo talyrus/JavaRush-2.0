@@ -9,7 +9,7 @@ public class Solution {
         Thread t = new Thread(new TestThread());
         t.start(); //запускаем дочернюю нить
         Thread.sleep(3000); //останавливаем основную нить
-        ourInterruptMethod(); //прерываем дочернюю нить
+        ourInterruptMethod();
     }
 
     public static void ourInterruptMethod() {
