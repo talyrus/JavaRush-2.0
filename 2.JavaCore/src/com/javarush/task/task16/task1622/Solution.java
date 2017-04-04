@@ -11,7 +11,7 @@ public class Solution {
         for (int i = 0; i < COUNT; i++) {
            SleepingThread sleepingThread = new SleepingThread(); // создаем очередной поток
             //напишите тут ваш код
-            sleepingThread.join();      //ждем его завершения
+            sleepingThread.join();      //приостановить текущий поток до завершения предыдущего
         }
     }
 
