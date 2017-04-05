@@ -8,7 +8,7 @@ import java.io.Reader;
  * Created by Taly on 05.04.2017.
  */
 public class ImageReaderFactory {
-	public static ImageReader getImageReader (ImageTypes imageTypes) throws IllegalArgumentException {
+	public static ImageReader getImageReader (ImageTypes imageTypes) {
 		if (imageTypes == ImageTypes.BMP) {
 			return new BmpReader();
 		} else if (imageTypes == ImageTypes.JPG) {
