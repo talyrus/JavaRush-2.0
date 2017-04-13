@@ -14,7 +14,7 @@ public class Solution {
 
         FileInputStream inputStream = new FileInputStream(reader.readLine());
         int readByte;
-        int compareByte = inputStream.read();
+        int compareByte = 500;
         while (inputStream.available() > 0) {
             readByte = inputStream.read();
            // System.out.println(readByte);
