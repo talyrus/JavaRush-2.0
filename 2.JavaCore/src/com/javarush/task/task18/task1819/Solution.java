@@ -25,7 +25,7 @@ public class Solution {
             byte[] arr_byte_2 = new byte[fileIn_2.available()];
             int len_copy_2 = fileIn_2.read(arr_byte_2);
 
-            fileOut.write(arr_byte_2, 0, len_copy_2); // записать данные из массива байт arr_byte_2, имеющего длину len_copy_2
+            fileOut.write(arr_byte_2, 0, len_copy_2); // записать len_copy_2 байтов из массива байт arr_byte_2
             fileOut.write(arr_byte, 0, len_copy_1);
 
             fileIn_2.close();
