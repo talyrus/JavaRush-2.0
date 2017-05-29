@@ -18,7 +18,7 @@ public class Solution {
         int count = 0;
         while (fileReader.ready()) { // пока есть данные в потоке чтения
             int data = fileReader.read(); // считать очередной байт
-            count++;    // увеличим счетчик
+            count++;    // увеличим счетчик. Нумерация байтов начинается с 1, а не с 0
             if (count % 2 == 0) {   // если значение счетчика делится без остатка (четный индекс)
                 fileWriter.write(data); // запишем байт в файл
             }
