@@ -29,7 +29,7 @@ public class Solution {
         //System.out.println(string);
 
         //загоним строку в массив, используя "," в качестве разделителя
-        String[] data = string.split("[^A-Za-z]");
+        String[] data = string.split(",");
 
         for (int i = 0; i < data.length; i++) {
             if (data[i].equals("world")) { // перебираем элементы массива и ищем совпадения
