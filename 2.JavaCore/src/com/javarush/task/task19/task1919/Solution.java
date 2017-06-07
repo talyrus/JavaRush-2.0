@@ -16,10 +16,8 @@ public class Solution {
         TreeMap<String, Double> table = new TreeMap<>();
         while (reader.ready()) {
             String[] strings = reader.readLine().split(" ");
-            Double summa;
             if (table.containsKey(strings[0])) {
-                summa = table.get(strings[0]) + Double.parseDouble(strings[1]);
-                table.put(strings[0], summa);
+                table.put(strings[0], table.get(strings[0]) + Double.parseDouble(strings[1]));
             } else
             {
                 table.put(strings[0], Double.parseDouble(strings[1]));
