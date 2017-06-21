@@ -10,12 +10,15 @@ public class Solution {
         public static String staticString = "it's test static string";
         public int i;
         public int j;
-
+	    //Для сериализации статического поля, нужно вписать его в файл вручную.
+	    //Метод для его сериализации
         public static void serializeStatic(ObjectOutputStream oos) throws IOException {
-            oos.writeObject(staticString);
+	        oos.writeUTF(staticString);
         }
+	    //Десереализация.
         public static void deserializeStatic(ObjectInputStream ois) throws IOException {
-            staticString = String.valueOf(ois.read());
+	        //Читаем байты и переводим их в String.
+	        staticString = ois.readUTF();
         }
     }
 
