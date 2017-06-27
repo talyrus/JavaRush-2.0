@@ -26,7 +26,7 @@ public class Solution {
     public static void print(byte[] bytes) {
         String str = "";
         for (byte item: bytes) {
-            //Integer.toBinaryString(item & 255) возвращает строковое представление целого аргумента как целоче число
+            //Integer.toBinaryString(item & 255) возвращает строковое представление целого аргумента как целое число
             //без знака по основанию 2 - т.е. в двоичный код
             str += String.format("%8s", Integer.toBinaryString(item & 255)).replace(' ', '0') + " "; //0xFF
         }
