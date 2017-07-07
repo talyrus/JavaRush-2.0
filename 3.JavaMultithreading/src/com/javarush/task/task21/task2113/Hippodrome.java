@@ -1,5 +1,6 @@
 package com.javarush.task.task21.task2113;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -7,6 +8,7 @@ import java.util.List;
  */
 public class Hippodrome { //1. Создадим класс
 	private List<Horse> horses; //2. создали поле типа List<Horse>
+	static Hippodrome game; //6. Создали статическое поле game типа Hippodrome.
 
 	public List<Horse> getHorses() { // 2. создали метод, возвращающий список
 		return horses;
@@ -17,6 +19,15 @@ public class Hippodrome { //1. Создадим класс
 	}
 
 	public static void main(String[] args) {
+		game = new Hippodrome(new ArrayList<>()); // 6. Создадим поле game типа Hippodrome
+
+		Horse h1 = new Horse("H1", 3, 0); // 6. Создадим лошадей
+		Horse h2 = new Horse("H2", 3, 0);
+		Horse h3 = new Horse("H3", 3, 0);
+
+		game.getHorses().add(h1); // 6. Добавим лошадей в ипподром
+		game.getHorses().add(h2);
+		game.getHorses().add(h3);
 
 	}
 }
