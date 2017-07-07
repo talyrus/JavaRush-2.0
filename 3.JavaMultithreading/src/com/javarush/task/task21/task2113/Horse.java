@@ -36,4 +36,12 @@ public class Horse { //1. Создадим класс
 	public void setDistance(double distance) {
 		this.distance = distance;
 	}
+
+	public void move(){ //8. Добавим метод move
+
+	}
+
+	public void print(){ //8. Добавим метод print
+
+	}
 }

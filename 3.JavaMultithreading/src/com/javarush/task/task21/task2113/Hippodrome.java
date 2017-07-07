@@ -26,7 +26,9 @@ public class Hippodrome { //1. Создадим класс
 		}
 	}
 	public void move() { //7. Добавим метод move - управляет движением всех лошадей
-
+		for (int i = 0; i < horses.size(); i++) {
+			horses.get(i).move(); //9. В методе move класса Hippodrome в цикле у каждой лошади вызовем метод move.
+		}
 	}
 	public void print() { //7. Добавим метод print - управляет отрисовкой лошадей на экране
 
