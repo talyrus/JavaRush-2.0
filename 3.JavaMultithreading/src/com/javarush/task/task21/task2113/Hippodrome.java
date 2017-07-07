@@ -40,7 +40,7 @@ public class Hippodrome { //1. Создадим класс
 	}
 
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
 		game = new Hippodrome(new ArrayList<>()); // 6. Создадим поле game типа Hippodrome
 
 		Horse h1 = new Horse("H1", 3, 0); // 6. Создадим лошадей
@@ -51,5 +51,6 @@ public class Hippodrome { //1. Создадим класс
 		game.getHorses().add(h2);
 		game.getHorses().add(h3);
 
+		game.run(); //11. Вызовем метод run
 	}
 }
