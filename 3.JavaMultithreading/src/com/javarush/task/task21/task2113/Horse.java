@@ -45,6 +45,10 @@ public class Horse { //1. Создадим класс
 	}
 
 	public void print(){ //8. Добавим метод print
-
+		StringBuilder str = new StringBuilder();    //13. Выведем "бег" лошадей
+		for (int i = 0; i < Math.floor(distance); i++) {
+			str.append(".");
+		}
+		System.out.println(str.append(name).toString());
 	}
 }
