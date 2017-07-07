@@ -1,4 +1,7 @@
 package com.javarush.task.task21.task2113;
+
+import com.sun.org.apache.xerces.internal.impl.xpath.regex.Match;
+
 /**
  * Created by Taly on 07.07.2017.
  */
@@ -38,7 +41,7 @@ public class Horse { //1. Создадим класс
 	}
 
 	public void move(){ //8. Добавим метод move
-
+		distance += speed * Math.random(); // 12. Добавим "случайное" перемещение лошади
 	}
 
 	public void print(){ //8. Добавим метод print
