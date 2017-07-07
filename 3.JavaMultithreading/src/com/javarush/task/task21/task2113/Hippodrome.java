@@ -18,6 +18,17 @@ public class Hippodrome { //1. Создадим класс
 		this.horses = horses;
 	}
 
+	public void run() { //7. Добавим метод run - управляет методами move, print
+
+	}
+	public void move() { //7. Добавим метод move - управляет движением всех лошадей
+
+	}
+	public void print() { //7. Добавим метод print - управляет отрисовкой лошадей на экране
+
+	}
+
+
 	public static void main(String[] args) {
 		game = new Hippodrome(new ArrayList<>()); // 6. Создадим поле game типа Hippodrome
 
