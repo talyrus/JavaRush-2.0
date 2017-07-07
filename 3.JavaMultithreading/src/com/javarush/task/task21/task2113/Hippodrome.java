@@ -39,6 +39,19 @@ public class Hippodrome { //1. Создадим класс
 		}
 	}
 
+	public Horse getWinner() {
+		Horse winner = horses.get(0);      //15. Определим победителя, найдя максимальное значение distance
+		for (int i = 0; i < horses.size(); i++) {
+			if (horses.get(i).distance > winner.distance) {
+				winner = horses.get(i);
+			}
+		}
+		return winner;
+	}
+
+	public void printWinner() {
+		System.out.println("Winner is " + getWinner().name + "!"); //15. Выведем победителя в консоль
+	}
 
 	public static void main(String[] args) throws InterruptedException {
 		game = new Hippodrome(new ArrayList<>()); // 6. Создадим поле game типа Hippodrome
@@ -52,5 +65,6 @@ public class Hippodrome { //1. Создадим класс
 		game.getHorses().add(h3);
 
 		game.run(); //11. Вызовем метод run
+		game.printWinner();
 	}
 }
