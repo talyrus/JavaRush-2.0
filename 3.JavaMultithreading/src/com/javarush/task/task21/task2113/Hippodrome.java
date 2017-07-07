@@ -12,6 +12,10 @@ public class Hippodrome {
 		return horses;
 	}
 
+	public Hippodrome(List<Horse> horses) { // создадим конструктор класса Hippodrome с одним параметром типа List.
+		this.horses = horses;
+	}
+
 	public static void main(String[] args) {
 
 	}
