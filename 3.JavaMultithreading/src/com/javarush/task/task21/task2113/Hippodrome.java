@@ -5,14 +5,14 @@ import java.util.List;
 /**
  * Created by Taly on 07.07.2017.
  */
-public class Hippodrome {
-	private List<Horse> horses; //создали поле типа List<Horse>
+public class Hippodrome { //1. Создадим класс
+	private List<Horse> horses; //2. создали поле типа List<Horse>
 
-	public List<Horse> getHorses() { // создали метод, возвращающий список
+	public List<Horse> getHorses() { // 2. создали метод, возвращающий список
 		return horses;
 	}
 
-	public Hippodrome(List<Horse> horses) { // создадим конструктор класса Hippodrome с одним параметром типа List.
+	public Hippodrome(List<Horse> horses) { // 3. создадим конструктор класса Hippodrome с одним параметром типа List.
 		this.horses = horses;
 	}
 
