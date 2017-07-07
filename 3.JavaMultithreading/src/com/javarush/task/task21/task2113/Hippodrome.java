@@ -31,7 +31,12 @@ public class Hippodrome { //1. Создадим класс
 		}
 	}
 	public void print() { //7. Добавим метод print - управляет отрисовкой лошадей на экране
-
+		for (int i = 0; i < horses.size(); i++) {
+			horses.get(i).print(); //10. В методе print класса Hippodrome в цикле у каждой лошади вызовем метод print.
+		}
+		for (int i = 0; i < 10; i++) { //10. Вывести 10 пустых строк
+			System.out.println();
+		}
 	}
 
 
