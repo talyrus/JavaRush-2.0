@@ -18,8 +18,12 @@ public class Hippodrome { //1. Создадим класс
 		this.horses = horses;
 	}
 
-	public void run() { //7. Добавим метод run - управляет методами move, print
-
+	public void run() throws InterruptedException { //7. Добавим метод run - управляет методами move, print
+		for (int i = 0; i < 100; i++) { //8. Создадим цикл от 1 до 100 и в нем вызовем методы move, print и задержку
+			move();
+			print();
+			Thread.sleep(200);
+		}
 	}
 	public void move() { //7. Добавим метод move - управляет движением всех лошадей
 
