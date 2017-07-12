@@ -65,6 +65,6 @@ public class Hippodrome { //1. Создадим класс
 		game.getHorses().add(h3);
 
 		game.run(); //11. Вызовем метод run
-		game.printWinner();
+		game.printWinner(); // 16. Вызовем метод printWinner()
 	}
 }
