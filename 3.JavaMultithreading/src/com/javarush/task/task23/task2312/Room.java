@@ -2,6 +2,7 @@ package com.javarush.task.task23.task2312;
 
 
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 
 /**
  * Основной класс программы.
@@ -99,6 +100,30 @@ public class Room {
         //Рисуем все кусочки змеи
         //Рисуем мышь
         //Выводим все это на экран
+        int[][] arr = new int[height][width];
+
+        ArrayList<SnakeSection> sections = new ArrayList<>(snake.getSections());
+        for (SnakeSection s : sections) {    // рисуем все кусочки змеи
+            arr[s.getY()][s.getX()] = 1;
+        }
+
+        // нарисуем голову змеи
+        arr[snake.getY()][snake.getX()] = 2;
+
+        arr[mouse.getY()][mouse.getX()] = 3; // мышь
+
+        String[] symbols = {".", "x", "X", "^"};
+        for (int y = 0; y < height; y++) {
+            for (int x = 0; x < width; x++) {
+                System.out.print(symbols[arr[y][x]]);
+            }
+            System.out.println();
+        }
+        System.out.println();
+        System.out.println();
+        System.out.println();
+
+
     }
 
     /**
