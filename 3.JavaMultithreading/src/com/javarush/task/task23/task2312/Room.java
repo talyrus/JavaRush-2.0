@@ -97,33 +97,31 @@ public class Room {
      */
     public void print() {
         //Создаем массив, куда будем "рисовать" текущее состояние игры
-        //Рисуем все кусочки змеи
-        //Рисуем мышь
-        //Выводим все это на экран
-        int[][] arr = new int[height][width];
+        int[][] matrix = new int[height][width];
 
-        ArrayList<SnakeSection> sections = new ArrayList<>(snake.getSections());
-        for (SnakeSection s : sections) {    // рисуем все кусочки змеи
-            arr[s.getY()][s.getX()] = 1;
+        //Рисуем все кусочки змеи
+        ArrayList<SnakeSection> sections = new ArrayList<SnakeSection>(snake.getSections());
+        for (SnakeSection snakeSection : sections) {
+            matrix[snakeSection.getY()][snakeSection.getX()] = 1;
         }
 
-        // нарисуем голову змеи
-        arr[snake.getY()][snake.getX()] = 2;
+        //Рисуем голову змеи (4 - если змея мертвая)
+        matrix[snake.getY()][snake.getX()] = snake.isAlive() ? 2 : 4;
 
-        arr[mouse.getY()][mouse.getX()] = 3; // мышь
+        //Рисуем мышь
+        matrix[mouse.getY()][mouse.getX()] = 3;
 
-        String[] symbols = {".", "x", "X", "^"};
+        //Выводим все это на экран
+        String[] symbols = {" . ", " x ", " X ", "^_^", "RIP"};
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
-                System.out.print(symbols[arr[y][x]]);
+                System.out.print(symbols[matrix[y][x]]);
             }
             System.out.println();
         }
         System.out.println();
         System.out.println();
         System.out.println();
-
-
     }
 
     /**
@@ -154,19 +152,19 @@ public class Room {
     }
 
 
+    private int initialDelay = 520;
+    private int delayStep = 20;
+
     /**
      * Программа делает паузу, длинна которой зависит от длинны змеи.
      */
     public void sleep() {
         try {
             int level = snake.getSections().size();
-            if (level < 15) {
-                Thread.sleep(500 - 20 * (level - 1));
-            } else {
-                Thread.sleep(200);
-            }
-        } catch (InterruptedException ex) {
-            ex.printStackTrace();
+            int delay = level < 15 ? (initialDelay - delayStep * level) : 200;
+            Thread.sleep(delay);
+        } catch (InterruptedException e) {
         }
     }
+
 }

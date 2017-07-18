@@ -43,10 +43,22 @@ public class Snake {
 	}
 
 	public void move() {
-
+		if (isAlive == true) {
+			if (this.direction == SnakeDirection.UP) {
+				move(0, -1);
+			} else if (this.direction == SnakeDirection.RIGHT) {
+				move(1, 0);
+			} else if (this.direction == SnakeDirection.DOWN) {
+				move(0, 1);
+			} else if (this.direction == SnakeDirection.LEFT) {
+				move(-1, 0);
+			}
+		}
 	}
 
+	public void move(int x, int y) {
 
+	}
 
 
 }
