@@ -66,8 +66,7 @@ public class Room {
             if (keyboardObserver.hasKeyEvents()) {
                 KeyEvent event = keyboardObserver.getEventFromTop();
                 //Если равно символу 'q' - выйти из игры.
-                if (event.getKeyChar() == 'q')
-                    return;
+                if (event.getKeyChar() == 'q') return;
 
                 //Если "стрелка влево" - сдвинуть фигурку влево
                 if (event.getKeyCode() == KeyEvent.VK_LEFT)
@@ -151,7 +150,6 @@ public class Room {
         game.run();
     }
 
-
     private int initialDelay = 520;
     private int delayStep = 20;
 
@@ -166,5 +164,4 @@ public class Room {
         } catch (InterruptedException e) {
         }
     }
-
 }
