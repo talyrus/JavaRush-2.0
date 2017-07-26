@@ -1,9 +1,11 @@
 package com.javarush.task.task24.task2413;
 
+import static java.lang.Double.max;
+
 /**
  * Created by Taly on 26.07.2017.
  */
-public class BaseObject {
+abstract public class BaseObject {
 	private double x, y, radius;
 
 	public double getX() {
@@ -34,5 +36,14 @@ public class BaseObject {
 		this.x = x;
 		this.y = y;
 		this.radius = radius;
+	}
+
+	abstract void draw(Canvas canvas);
+
+	abstract void move();
+
+	boolean isIntersec(BaseObject o) {
+		double dist = Math.sqrt(Math.pow((o.getX() - this.getX()), 2) + Math.pow((o.getY() - this.getY()), 2));
+		return dist <= max(this.getRadius(), o.getRadius());
 	}
 }
