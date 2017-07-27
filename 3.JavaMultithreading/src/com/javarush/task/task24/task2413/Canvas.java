@@ -7,10 +7,10 @@ public class Canvas {
 	private int width, height;
 	private char[][] matrix;
 
-	public Canvas(int width, int height) {
-		this.width = width;
-		this.height = height;
-		matrix = new char[height + 2][width + 2];
+	public Canvas(int width, int height) { // ширина, высота
+		this.width = width;     //ширина
+		this.height = height; //высота
+		matrix = new char[height + 2][width + 2]; //высота, ширина
 	}
 
 	public int getWidth() {
@@ -35,5 +35,24 @@ public class Canvas {
 
 	public void setMatrix(char[][] matrix) {
 		this.matrix = matrix;
+	}
+
+	void setPoint(double x, double y, char c) {
+		if (x < 0 || y < 0 || y > matrix.length || x > matrix[0].length) {
+			// y = matrix.length верхний угол         // x > matrix[0].length правый угол
+		} else {
+			matrix[(int) Math.round(y)][(int) Math.round(x)] = c;
+			// y - количество строк - высота, x - количество членов в строке массива - ширина
+		}
+	}
+
+	void drawMatrix(double x, double y, int[][] matrix, char c) {
+		for (int i = 0; i < matrix.length; i++) {
+			for (int j = 0; j < matrix.length; j++) {
+				if (matrix[i][j] != 0) {
+					this.setPoint(x + j, y + i, c);
+				}
+			}
+		}
 	}
 }
