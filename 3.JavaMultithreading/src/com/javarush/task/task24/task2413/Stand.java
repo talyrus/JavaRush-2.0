@@ -1,47 +1,64 @@
 package com.javarush.task.task24.task2413;
 
 /**
- * Created by Taly on 26.07.2017.
+ * Подставка, с помощью которой отражаем мячик.
  */
 public class Stand extends BaseObject {
-	private double speed, direction;
-	//direction -(направление движения по оси x:
-	// 1 — вправо, -1 — влево, 0 — начальное значение, стоим на месте)
+    //картинка для отрисовки
+    private static int[][] matrix = {
+            {1, 1, 1, 1, 1},
+            {1, 0, 0, 0, 1},
+            {0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0},
+    };
 
+    //скорость
+    private double speed = 1;
+    //направление (-1 влево, +1 вправо)
+    private double direction = 0;
 
-	public double getSpeed() {
-		return speed;
-	}
+    public Stand(double x, double y) {
+        super(x, y, 3);
+    }
 
-	public double getDirection() {
-		return direction;
-	}
+    /**
+     * Метод передвигает подставку в соответствии с текущим значением direction.
+     */
+    void move() {
+        double dx = speed * direction;
+        x = x + dx;
 
-	public Stand(double x, double y) {
-		super(x, y, 3);
-		speed = 1;
-		direction = 0;
-	}
+        checkBorders(radius, Arkanoid.game.getWidth() - radius + 1, 1, Arkanoid.game.getHeight() + 1);
+    }
 
-	public Stand(double x, double y, double radius) {
-		super(x, y, radius);
-	}
+    /**
+     * direction устанавливается равным -1
+     */
+    void moveLeft() {
+        direction = -1;
+    }
 
-	@Override
-	void draw(Canvas canvas) {
+    /**
+     * direction устанавливается равным +1
+     */
+    void moveRight() {
+        direction = 1;
+    }
 
-	}
+    public double getSpeed() {
+        return speed;
+    }
 
-	@Override
-	void move() {
-		x += direction * speed;
-	}
+    public double getDirection() {
+        return direction;
+    }
 
-	void moveLeft() {
-		direction = -1;
-	}
-
-	void moveRight() {
-		direction = 1;
-	}
+    /**
+     * Отрисовываем себя на холсте
+     */
+    @Override
+    void draw(Canvas canvas) {
+        canvas.drawMatrix(x - radius + 1, y, matrix, 'M');
+    }
 }
