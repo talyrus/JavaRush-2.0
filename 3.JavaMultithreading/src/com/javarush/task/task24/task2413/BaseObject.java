@@ -6,7 +6,7 @@ import static java.lang.Double.max;
  * Created by Taly on 26.07.2017.
  */
 abstract public class BaseObject {
-	private double x, y, radius;
+	protected double x, y, radius;
 
 	public double getX() {
 		return x;
