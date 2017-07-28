@@ -34,6 +34,14 @@ public class Stand extends BaseObject {
 
 	@Override
 	void move() {
+		x += direction * speed;
+	}
 
+	void moveLeft() {
+		direction = -1;
+	}
+
+	void moveRight() {
+		direction = 1;
 	}
 }
