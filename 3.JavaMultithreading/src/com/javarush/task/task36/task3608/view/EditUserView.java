@@ -23,4 +23,6 @@ public class EditUserView implements View {
 	public void setController(Controller controller) {
 		this.controller = controller;
 	}
+
+
 }
