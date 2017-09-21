@@ -20,4 +20,9 @@ public class FakeModel implements Model {
 	public ModelData getModelData() {
 		return this.modelData;
 	}
+
+	@Override
+	public void loadDeletedUsers() {
+		throw new UnsupportedOperationException();
+	}
 }
