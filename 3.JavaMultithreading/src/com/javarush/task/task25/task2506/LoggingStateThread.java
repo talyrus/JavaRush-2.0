@@ -21,6 +21,7 @@ public class LoggingStateThread extends Thread {
 			} else if (!state.equals(prState)) {
 				System.out.println(state.toString());
 				prState = state;
+				return;
 			}
 			if (state.equals(State.TERMINATED)) {
 				break;
