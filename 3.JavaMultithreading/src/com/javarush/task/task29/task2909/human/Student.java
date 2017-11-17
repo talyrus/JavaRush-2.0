@@ -26,10 +26,9 @@ public class Student extends UniversityPerson {
 	public void learn() {
 	}
 
-
-
-	public void printData() {
-		System.out.println("Студент: " + name);
+	@Override
+	public String getPosition() {
+		return "Студент";
 	}
 
 	public void incAverageGradeBy01() {
