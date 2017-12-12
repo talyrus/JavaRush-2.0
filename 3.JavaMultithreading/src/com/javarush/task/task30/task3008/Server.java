@@ -62,10 +62,16 @@ public class Server {
 						}
 					}
 				}
-
-
 			}
+		}
 
+		private void sendListOfUsers(Connection connection, String userName) throws IOException {
+			for (Map.Entry<String, Connection> user : connectionMap.entrySet()) { // перебираем connectionMap
+				String name = user.getKey();                        //получим имя пользователя
+				if (!name.equals(userName)) {                       // если имя не равно переданному параметру
+					connection.send(new Message(MessageType.USER_ADDED, name)); //отправить сообщение о добавлении пользователея
+				}
+			}
 		}
 
 	}
