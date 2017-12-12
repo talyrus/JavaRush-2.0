@@ -6,6 +6,7 @@ import java.net.Socket;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+
 /**
  * Created by Taly on 08.12.2017.
  */
@@ -48,6 +49,24 @@ public class Server {
 			this.socket = socket;
 		}
 
+		private String serverHandshake(Connection connection) throws IOException, ClassNotFoundException {
+			while (true) {
+				connection.send(new Message(MessageType.NAME_REQUEST)); // отправляем запрос имени
+				Message answer = connection.receive(); // получаем ответ от клиента
+				if (answer.getType().equals(MessageType.USER_NAME)) { // если вернулось имя пользователя
+					if (!answer.getData().isEmpty()) { //проверим, что оно не пустое
+						if (!connectionMap.containsKey(answer.getData())) { //если такого пользователя нет
+							connectionMap.put(answer.getData(), connection); // добавим  его
+							connection.send(new Message(MessageType.NAME_ACCEPTED)); // уведомим пользователя о принятии имени
+							return answer.getData();    // вернем строку с именем
+						}
+					}
+				}
+
+
+			}
+
+		}
 
 	}
 
