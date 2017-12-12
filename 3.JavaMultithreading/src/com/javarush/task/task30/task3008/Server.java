@@ -66,10 +66,22 @@ public class Server {
 		}
 
 		private void sendListOfUsers(Connection connection, String userName) throws IOException {
-			for (Map.Entry<String, Connection> user : connectionMap.entrySet()) { // перебираем connectionMap
-				String name = user.getKey();                        //получим имя пользователя
-				if (!name.equals(userName)) {                       // если имя не равно переданному параметру
-					connection.send(new Message(MessageType.USER_ADDED, name)); //отправить сообщение о добавлении пользователея
+			for (Map.Entry<String, Connection> user : connectionMap.entrySet()) {
+				String name = user.getKey();
+				if (!name.equals(userName)) {
+					connection.send(new Message(MessageType.USER_ADDED, name));
+				}
+			}
+		}
+
+		private void serverMainLoop(Connection connection, String userName) throws IOException, ClassNotFoundException {
+			while (true) {
+				Message answer = connection.receive(); // принимаем сообщения от клиентов
+				if (answer.getType() == (MessageType.TEXT)) { // если тип сообщения TEXT
+					String message = userName + ": " + answer.getData(); // сформируем ответное сообщение
+					sendBroadcastMessage(new Message(MessageType.TEXT, message)); // отправим его всем клиентам
+				} else {
+					ConsoleHelper.writeMessage("Error!"); // если тип сообщения НЕ TEXT, выведем ошибку
 				}
 			}
 		}
