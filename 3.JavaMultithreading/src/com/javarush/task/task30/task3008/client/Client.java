@@ -55,4 +55,37 @@ public class Client {
 			clientConnected = false;
 		}
 	}
+
+	public void run() {
+		SocketThread socketThread = getSocketThread(); //создадим сокетный поток
+		socketThread.setDaemon(true); // пометим созданный поток как демон
+		socketThread.start(); //запустим поток
+		synchronized (this) { //синхронизируем текущий поток
+			try {
+				this.wait(); //запустим текущий поток
+				if (clientConnected) {  // если клиент соединился, вывести сообщение
+					ConsoleHelper.writeMessage("Соединение установлено. Для выхода наберите команду 'exit'.");
+					while (clientConnected) { // пока клиент соединен
+						String text = ConsoleHelper.readString(); // считывать текст с консоли
+						if (text.trim() == "exit") { // если введено exit
+							break;  // выйти из цикла
+						}
+						if (shouldSendTextFromConsole()) { //  если получен текст с консоли
+							sendTextMessage(text);  // отправить считанный текст
+						}
+					}
+				} else {
+					ConsoleHelper.writeMessage("Произошла ошибка во время работы клиента.");
+				}
+			} catch (InterruptedException e) {
+				ConsoleHelper.writeMessage("Ошибка создания потока сокета!");
+			}
+		}
+
+	}
+
+	public static void main(String[] args) {
+		Client client = new Client(); // создадим новый объект Client
+		client.run();   // вызовем метод run()
+	}
 }
