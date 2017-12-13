@@ -76,17 +76,41 @@ public class Server {
 
 		private void serverMainLoop(Connection connection, String userName) throws IOException, ClassNotFoundException {
 			while (true) {
-				Message answer = connection.receive(); // принимаем сообщения от клиентов
-				if (answer.getType() == (MessageType.TEXT)) { // если тип сообщения TEXT
-					String message = userName + ": " + answer.getData(); // сформируем ответное сообщение
-					sendBroadcastMessage(new Message(MessageType.TEXT, message)); // отправим его всем клиентам
+				Message answer = connection.receive();
+				if (answer.getType() == (MessageType.TEXT)) {
+					String message = userName + ": " + answer.getData();
+					sendBroadcastMessage(new Message(MessageType.TEXT, message));
 				} else {
-					ConsoleHelper.writeMessage("Error!"); // если тип сообщения НЕ TEXT, выведем ошибку
+					ConsoleHelper.writeMessage("Error!");
 				}
 			}
 		}
 
+		@Override
+		public void run() {
+			String userName = null;
+			// выведем сообщение об установлении нового соедения с удаленным адресом
+			ConsoleHelper.writeMessage("Соединение с удаленным адресом установлено: " + socket.getRemoteSocketAddress());
+			try (Connection connection = new Connection(socket)) { // создадим соединение с конкретным сокетом
+				userName = serverHandshake(connection); // вызов рукопожатия и получение имени клиента
+				// разошлем участника чата имя присоединившегося
+				sendBroadcastMessage(new Message(MessageType.USER_ADDED, userName));
+				sendListOfUsers(connection, userName); //сообщим участнику об уже существующих участниках
+				serverMainLoop(connection, userName); // запустим главный цикл обработки сообщений сервером
+			} catch (IOException | ClassNotFoundException e) {
+				try {
+					socket.close();
+				} catch (IOException ex) {
+					ConsoleHelper.writeMessage("Ошибка обмена информацией с удаленным адресом " + e.getStackTrace());
+				}
+			} finally {
+				if (userName != null) {
+					connectionMap.remove(userName); // удалим пользователя
+					//отошлем всем сообщение об удалении
+					sendBroadcastMessage(new Message(MessageType.USER_REMOVED, userName));
+					ConsoleHelper.writeMessage("Соединение с удаленным адресом закрыто");
+				}
+			}
+		}
 	}
-
-
 }
