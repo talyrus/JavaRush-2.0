@@ -6,6 +6,7 @@ import com.javarush.task.task30.task3008.Message;
 import com.javarush.task.task30.task3008.MessageType;
 
 import java.io.IOException;
+import java.net.Socket;
 
 /**
  * Created by Taly on 13.12.2017.
@@ -66,9 +67,21 @@ public class Client {
 			}
 		}
 
+		@Override
+		public void run() {
+			String address = getServerAddress(); //запросим адрес сервера
+			int port = getServerPort(); // запросим порт сервера
+			try {
+				Socket socket = new Socket(address, port); // создадим сокет
+				connection = new Connection(socket); //инициализируем соединение
+				clientHandshake();
+				clientMainLoop();
+			} catch (IOException | ClassNotFoundException e) {
+				notifyConnectionStatusChanged(false);
+			}
+
+		}
 	}
-
-
 
 	protected String getServerAddress() {
 		System.out.println("Введите адрес сервера: ");
