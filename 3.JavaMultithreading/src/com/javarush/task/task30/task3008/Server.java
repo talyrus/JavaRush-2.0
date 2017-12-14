@@ -26,7 +26,6 @@ public class Server {
 	}
 
 	public static void main(String[] args) throws IOException {
-		ConsoleHelper.writeMessage("Введите номер порта: ");
 		int portServer = ConsoleHelper.readInt(); // считаем номер порта с консоли
 		Socket socket = null;
 		try (ServerSocket serverSocket = new ServerSocket(portServer)) { //создаем серверный сокет
@@ -78,7 +77,7 @@ public class Server {
 		private void serverMainLoop(Connection connection, String userName) throws IOException, ClassNotFoundException {
 			while (true) {
 				Message answer = connection.receive();
-				if (answer != null && answer.getType() == (MessageType.TEXT)) {
+				if (answer.getType() == (MessageType.TEXT)) {
 					String message = userName + ": " + answer.getData();
 					sendBroadcastMessage(new Message(MessageType.TEXT, message));
 				} else {
@@ -91,10 +90,7 @@ public class Server {
 		public void run() {
 			String userName = null;
 			// выведем сообщение об установлении нового соедения с удаленным адресом
-			if (socket != null && socket.getRemoteSocketAddress() != null) {
-				ConsoleHelper.writeMessage("Соединение с удаленным адресом установлено: " + socket.getRemoteSocketAddress());
-			}
-
+			ConsoleHelper.writeMessage("Соединение с удаленным адресом установлено: " + socket.getRemoteSocketAddress());
 			try (Connection connection = new Connection(socket)) { // создадим соединение с конкретным сокетом
 				userName = serverHandshake(connection); // вызов рукопожатия и получение имени клиента
 				// разошлем участника чата имя присоединившегося
@@ -112,8 +108,8 @@ public class Server {
 					connectionMap.remove(userName); // удалим пользователя
 					//отошлем всем сообщение об удалении
 					sendBroadcastMessage(new Message(MessageType.USER_REMOVED, userName));
+					ConsoleHelper.writeMessage("Соединение с удаленным адресом закрыто");
 				}
-				ConsoleHelper.writeMessage("Соединение с удаленным адресом закрыто");
 			}
 		}
 	}
