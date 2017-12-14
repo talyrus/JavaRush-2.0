@@ -11,7 +11,7 @@ import java.net.Socket;
 /**
  * Created by Taly on 13.12.2017.
  */
-public class Client {
+public class Client extends Thread {
 	// обращение из класса потомков и запрет обращения из других классов вне пакета
 	protected Connection connection;
 	// если клиент соединился с сервером - true. Исключим использование кэшированного значения поля
@@ -84,19 +84,19 @@ public class Client {
 	}
 
 	protected String getServerAddress() {
-		System.out.println("Введите адрес сервера: ");
+		ConsoleHelper.writeMessage("Введите адрес сервера: ");
 		String address = ConsoleHelper.readString();
 		return address;
 	}
 
 	protected int getServerPort() {
-		System.out.println("Введите порт сервера: ");
+		ConsoleHelper.writeMessage("Введите порт сервера: ");
 		int port = ConsoleHelper.readInt();
 		return port;
 	}
 
 	protected String getUserName() {
-		System.out.println("Введите имя пользователя: ");
+		ConsoleHelper.writeMessage("Введите имя пользователя: ");
 		String userName = ConsoleHelper.readString();
 		return userName;
 	}
@@ -129,7 +129,7 @@ public class Client {
 					ConsoleHelper.writeMessage("Соединение установлено. Для выхода наберите команду 'exit'.");
 					while (clientConnected) { // пока клиент соединен
 						String text = ConsoleHelper.readString(); // считывать текст с консоли
-						if (text.trim() == "exit") { // если введено exit
+						if (text.trim().equalsIgnoreCase("exit")) { // если введено exit
 							break;  // выйти из цикла
 						}
 						if (shouldSendTextFromConsole()) { //  если получен текст с консоли
