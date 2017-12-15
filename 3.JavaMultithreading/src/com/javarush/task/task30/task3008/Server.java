@@ -26,6 +26,7 @@ public class Server {
 	}
 
 	public static void main(String[] args) throws IOException {
+		ConsoleHelper.writeMessage("Введите номер порта сервера:");
 		int portServer = ConsoleHelper.readInt(); // считаем номер порта с консоли
 		Socket socket = null;
 		try (ServerSocket serverSocket = new ServerSocket(portServer)) { //создаем серверный сокет
