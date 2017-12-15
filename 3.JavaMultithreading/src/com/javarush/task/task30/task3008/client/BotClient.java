@@ -20,39 +20,23 @@ public class BotClient extends Client {
 
 		@Override
 		protected void processIncomingMessage(String message) {
-			String pattern = "";
+			String pattern="";
 			ConsoleHelper.writeMessage(message);
-			if (message != null && !message.isEmpty() && message.contains(":")) {
-				String[] strings = message.split(": ");
+			if (message!=null&&!message.isEmpty()&&message.contains(":"))
+			{
+				String[] strings=message.split(": ");
 				switch (strings[1]) {
-					case "дата":
-						pattern = "d.MM.YYYY";
-						break;
-					case "день":
-						pattern = "d";
-						break;
-					case "месяц":
-						pattern = "MMMM";
-						break;
-					case "год":
-						pattern = "YYYY";
-						break;
-					case "время":
-						pattern = "H:mm:ss";
-						break;
-					case "час":
-						pattern = "H";
-						break;
-					case "минуты":
-						pattern = "m";
-						break;
-					case "секунды":
-						pattern = "s";
-						break;
+					case "дата": pattern="d.MM.YYYY"; break;
+					case "день" : pattern="d";break;
+					case "месяц" : pattern="MMMM";break;
+					case "год": pattern="YYYY";break;
+					case "время": pattern="H:mm:ss";break;
+					case "час": pattern="H";break;
+					case "минуты": pattern="m";break;
+					case "секунды": pattern="s";break;
 				}
 				Date time = Calendar.getInstance().getTime();
-				if (pattern != "")
-					sendTextMessage(String.format("Информация для %s: %s", strings[0], new SimpleDateFormat(pattern).format(time)));
+				if (pattern!="") sendTextMessage(String.format("Информация для %s: %s",strings[0],new SimpleDateFormat(pattern).format(time)));
 			}
 		}
 
