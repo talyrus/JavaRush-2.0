@@ -1,23 +1,23 @@
 package com.javarush.task.task31.task3110;
 
+import java.io.BufferedReader;
 import java.io.IOException;
-import java.util.Scanner;
+import java.io.InputStreamReader;
 
-/**
- * Created by Taly on 20.12.2017.
- */
 public class ConsoleHelper {
-	public static void writeMessage(String message) {
-		System.out.println(message); // выводим полученный message в консоль
-	}
+    private static BufferedReader bis = new BufferedReader(new InputStreamReader(System.in));
 
-	public static String readString() throws IOException {
-		Scanner scanner = new Scanner(System.in);
-		return scanner.nextLine();  // возвращаем считанный с консоли текст
-	}
+    public static void writeMessage(String message) {
+        System.out.println(message);
+    }
 
-	public static int readInt() throws IOException {
-		Scanner scanner = new Scanner(System.in);
-		return scanner.nextInt(); // возвращаем считанное с консоли число
-	}
+    public static String readString() throws IOException {
+        String text = bis.readLine();
+        return text;
+    }
+
+    public static int readInt() throws IOException {
+        String text = readString();
+        return Integer.parseInt(text.trim());
+    }
 }

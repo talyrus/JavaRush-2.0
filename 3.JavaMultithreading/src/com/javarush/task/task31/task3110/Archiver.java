@@ -1,5 +1,7 @@
 package com.javarush.task.task31.task3110;
 
+import com.javarush.task.task31.task3110.command.ExitCommand;
+
 import java.nio.file.Paths;
 import java.util.Scanner;
 
@@ -18,6 +20,12 @@ public class Archiver {
 
 		}
 
+		ExitCommand exitCommand = new ExitCommand();
+		try {
+			exitCommand.execute();
+		} catch (Exception e) {
+
+		}
 
 	}
 }
