@@ -1,5 +1,7 @@
 package com.javarush.task.task32.task3209;
 
+import com.javarush.task.task32.task3209.listeners.FrameListener;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -27,11 +29,27 @@ public class View extends JFrame implements ActionListener {
 	}
 
 	public void init() { //инициализация представления
-
+		initGui();
+		this.addWindowListener(new FrameListener(this)); //для текущего окна зарегистрируем слушателя
+		this.setVisible(true); // покажем окно
 	}
 
 	public void exit() {
 		controller.exit();
+	}
+
+	public void initMenuBar() { //инициализация меню
+
+	}
+
+	public void initEditor() { //инициализация панелей редактора
+
+	}
+
+	public void initGui() { //инициализация графического интерфейса
+		initMenuBar();
+		initEditor();
+		pack(); // установка минимального размера контейнера, который достаточен для отображения всех компонентов
 	}
 
 }
