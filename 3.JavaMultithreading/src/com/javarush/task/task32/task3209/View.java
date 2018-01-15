@@ -52,4 +52,8 @@ public class View extends JFrame implements ActionListener {
 		pack(); // установка минимального размера контейнера, который достаточен для отображения всех компонентов
 	}
 
+	public void selectedTabChanged() {
+
+	}
+
 }
