@@ -9,6 +9,9 @@ import java.awt.event.ActionListener;
  */
 public class View extends JFrame implements ActionListener {
 	private Controller controller;
+	private JTabbedPane tabbedPane = new JTabbedPane(); //панель с двумя вкладками
+	private JTextPane htmlTextPane = new JTextPane(); //компонент для визуального редактирования html
+	private JEditorPane plainTextPane = new JEditorPane(); //компонент для редактирования html в виде текста
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
