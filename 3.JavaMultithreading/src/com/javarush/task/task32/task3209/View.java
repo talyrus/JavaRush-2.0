@@ -41,7 +41,16 @@ public class View extends JFrame implements ActionListener {
 	}
 
 	public void initMenuBar() { //инициализация меню
-
+		JMenuBar jMenuBar = new JMenuBar();
+		MenuHelper menuHelper = new MenuHelper();
+		menuHelper.initFileMenu(this, jMenuBar);
+		menuHelper.initEditMenu(this, jMenuBar);
+		menuHelper.initStyleMenu(this, jMenuBar);
+		menuHelper.initAlignMenu(this, jMenuBar);
+		menuHelper.initColorMenu(this, jMenuBar);
+		menuHelper.initFontMenu(this, jMenuBar);
+		menuHelper.initHelpMenu(this, jMenuBar);
+		this.getContentPane().add(jMenuBar, BorderLayout.NORTH);
 	}
 
 	public void initEditor() { //инициализация панелей редактора
@@ -69,6 +78,20 @@ public class View extends JFrame implements ActionListener {
 
 	public void selectedTabChanged() {
 
+	}
+
+	public View() {
+		try {
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		} catch (UnsupportedLookAndFeelException e) {
+			e.printStackTrace();
+		}
 	}
 
 }
