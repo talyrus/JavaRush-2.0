@@ -52,7 +52,7 @@ public class View extends JFrame implements ActionListener {
 		JScrollPane jScrollPaneText = new JScrollPane(plainTextPane); //Создали новый локальный компонент JScrollPane на базе plainTextPane.
 		tabbedPane.addTab("Текст", jScrollPaneText); //Добавили еще одну вкладку в tabbedPane с именем "Текст" и вторым компонентом
 
-		tabbedPane.setPreferredSize(new Dimension(1024, 768));// Устанавили предпочтительный размер панели tabbedPane.
+		tabbedPane.setPreferredSize(new Dimension());// Устанавили предпочтительный размер панели tabbedPane.
 		//Создали объект класса TabbedPaneChangeListener
 		TabbedPaneChangeListener tabbedPaneChangeListener = new TabbedPaneChangeListener(this);
 		// и установили его в качестве слушателя изменений в tabbedPane.
