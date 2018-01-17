@@ -3,6 +3,7 @@ package com.javarush.task.task32.task3209;
 import javax.swing.text.html.HTMLDocument;
 import javax.swing.text.html.HTMLEditorKit;
 import java.io.File;
+import java.io.StringReader;
 
 /**
  * Created by Taly on 15.01.2018.
@@ -15,6 +16,7 @@ public class Controller {
 	public Controller(View view) {
 		this.view = view;
 	}
+
 	public static void main(String[] args) {
 		View view = new View();
 		Controller controller = new Controller(view);
@@ -46,5 +48,18 @@ public class Controller {
 		//добавим ему слушателя правок
 		document.addUndoableEditListener(view.getUndoListener());
 		view.update(); //вызовем у представления метод update()
+	}
+
+	public void setPlainText(String text) { //будет записывать переданный текст с html тегами в документ document
+		resetDocument(); //сбросим документ
+		// создадим новый ридер на базе переданного текста
+		StringReader reader = new StringReader(text);
+		try { //вызов метода read() из класса HTMLEditor() для вычитки данных из ридера в документ
+			new HTMLEditorKit().read(reader, document, 0);
+		} catch (Exception e) { //блокируем исключения и логируем их
+			ExceptionHandler.log(e);
+		}
+
+
 	}
 }
