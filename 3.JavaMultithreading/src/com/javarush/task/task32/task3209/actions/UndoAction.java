@@ -16,7 +16,7 @@ public class UndoAction extends AbstractAction {
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent e) {
-
+	public void actionPerformed(ActionEvent actionEvent) {
+		view.undo();
 	}
 }
