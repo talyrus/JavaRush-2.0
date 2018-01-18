@@ -82,8 +82,20 @@ public class View extends JFrame implements ActionListener {
 		pack(); // установка минимального размера контейнера, который достаточен для отображения всех компонентов
 	}
 
-	public void selectedTabChanged() {
-
+	public void selectedTabChanged() { //метод вызывается, когда произошла смена выбранной вкладки
+		switch (tabbedPane.getSelectedIndex()) { // получим индекс вкладки
+			case 0: // если 0 (html вкладка)
+				//получим текст из plainTextPane и установим его в контроллер
+				// с помощью метода setPlainText
+				controller.setPlainText(plainTextPane.getText());
+				break;
+			case 1: //Если выбрана вкладка с индексом 1 (вкладка с html текстом)
+				//Получим текст у контроллера с помощью метода getPlainText()
+				// и установим его в панель plainTextPane.
+				plainTextPane.setText(controller.getPlainText());
+				break;
+		}
+		resetUndo(); //сбросим правки
 	}
 
 	public View() {
