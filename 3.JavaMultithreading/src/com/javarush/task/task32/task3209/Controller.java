@@ -27,7 +27,7 @@ public class Controller {
 	}
 
 	public void init() { //инициализация контроллера
-
+		createNewDocument();
 	}
 
 	public void exit() {
@@ -74,6 +74,11 @@ public class Controller {
 	}
 
 	public void createNewDocument() {
+		view.selectHtmlTab(); // выбирем html вкладку
+		resetDocument(); // сбросим документ
+		view.setTitle("HTML редактор"); // установим заголовок окна
+		view.resetUndo(); // сбросим правки в Undo-менеджере
+		currentFile = null; //обнулим переменную
 
 	}
 
