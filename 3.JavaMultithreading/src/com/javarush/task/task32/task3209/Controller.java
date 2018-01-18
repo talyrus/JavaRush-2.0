@@ -3,10 +3,7 @@ package com.javarush.task.task32.task3209;
 import javax.swing.*;
 import javax.swing.text.html.HTMLDocument;
 import javax.swing.text.html.HTMLEditorKit;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.StringReader;
-import java.io.StringWriter;
+import java.io.*;
 
 /**
  * Created by Taly on 15.01.2018.
@@ -85,12 +82,38 @@ public class Controller {
 	}
 
 	public void openDocument() {
-
+		view.selectHtmlTab(); //переключим на вкладку html
+		JFileChooser fileChooser = new JFileChooser(); // создадим новый объект JFileChooser
+		fileChooser.setFileFilter(new HTMLFileFilter()); // установим фильтр
+		// покажем диал.окно выбора файла и получим подверждение выбора файла
+		if (fileChooser.showOpenDialog(view) == JFileChooser.APPROVE_OPTION) { // если выбор подтвержден
+			currentFile = fileChooser.getSelectedFile();  // сохраним файл
+			resetDocument();
+			view.setTitle(currentFile.getName()); // получим его название и установим в заголовок
+			try (FileReader fileReader = new FileReader(currentFile)) { //создадим объект  для чтения
+				// считаем данные из ридера в document в
+				new HTMLEditorKit().read(fileReader, document, 0);
+				view.resetUndo();
+			} catch (Exception e) {
+				ExceptionHandler.log(e);
+			}
+		}
 	}
 
 	public void saveDocument() {
-
+		if (currentFile == null) {
+			saveDocumentAs();
+		} else {
+			view.selectHtmlTab(); //переключим на вкладку html
+			try (FileWriter fileWriter = new FileWriter(currentFile)) { //создадим объект  для записи
+				// перепишем данные из document в созданный объект
+				new HTMLEditorKit().write(fileWriter, document, 0, document.getLength());
+			} catch (Exception e) {
+				ExceptionHandler.log(e);
+			}
+		}
 	}
+
 
 	public void saveDocumentAs() {
 		view.selectHtmlTab(); //переключим на вкладку html
