@@ -72,4 +72,21 @@ public class Controller {
 		}
 		return stringWriter.toString(); //вернем полученный текст
 	}
+
+	public void createNewDocument() {
+
+	}
+
+	public void openDocument() {
+
+	}
+
+	public void saveDocument() {
+
+	}
+
+	public void saveDocumentAs() {
+
+	}
+
 }

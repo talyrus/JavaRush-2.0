@@ -24,8 +24,29 @@ public class View extends JFrame implements ActionListener {
 	private UndoListener undoListener = new UndoListener(undoManager);
 
 	@Override
-	public void actionPerformed(ActionEvent e) {
-
+	public void actionPerformed(ActionEvent actionEvent) {
+		//метод будет вызваться при выборе пунктов меню,
+		// у которых представление указано в виде слушателя событий.
+		switch (actionEvent.getActionCommand()) {
+			case "Новый":
+				controller.createNewDocument();
+				break;
+			case "Открыть":
+				controller.openDocument();
+				break;
+			case "Сохранить":
+				controller.saveDocument();
+				break;
+			case "Сохранить как...":
+				controller.saveDocumentAs();
+				break;
+			case "Выход":
+				controller.exit();
+				break;
+			case "О программе":
+				this.showAbout();
+				break;
+		}
 	}
 
 	public Controller getController() {
