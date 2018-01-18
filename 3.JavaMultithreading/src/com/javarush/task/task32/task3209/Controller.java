@@ -1,8 +1,10 @@
 package com.javarush.task.task32.task3209;
 
+import javax.swing.*;
 import javax.swing.text.html.HTMLDocument;
 import javax.swing.text.html.HTMLEditorKit;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.StringReader;
 import java.io.StringWriter;
 
@@ -91,7 +93,20 @@ public class Controller {
 	}
 
 	public void saveDocumentAs() {
-
+		view.selectHtmlTab(); //переключим на вкладку html
+		JFileChooser fileChooser = new JFileChooser(); // создадим новый объект JFileChooser
+		fileChooser.setFileFilter(new HTMLFileFilter()); // установим фильтр
+		// покажем диал.окно сохранения файла и получим подверждение выбора файла
+		if (fileChooser.showSaveDialog(view) == JFileChooser.APPROVE_OPTION) { // если выбор подтвержден
+			currentFile = fileChooser.getSelectedFile();  // сохраним файл
+			view.setTitle(currentFile.getName()); // получим его название и установим в заголовок
+			try (FileWriter fileWriter = new FileWriter(currentFile)) { //создадим объект  для записи
+				// перепишем данные из document в созданный объект
+				new HTMLEditorKit().write(fileWriter, document, 0, document.getLength());
+			} catch (Exception e) {
+				ExceptionHandler.log(e);
+			}
+		}
 	}
 
 }

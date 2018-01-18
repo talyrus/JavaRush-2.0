@@ -9,17 +9,18 @@ import java.io.File;
 public class HTMLFileFilter extends FileFilter { //Класс для открытия или сохранения файла
 	@Override
 	public boolean accept(File file) {
-		if (file.isDirectory()) { // если переданный файл - директория, вернуть true
+		if (file.isDirectory()) {
 			return true;
-		} else if (!file.isDirectory()) { // если Не директория
-			String name = file.getName().toLowerCase(); // получим имя без учета регистра
-			return name.endsWith(".htm") || name.endsWith(".html"); // вернем true при нужных типах файлов
 		}
-		return false; //иначе вернем false
+		else if (!file.isDirectory()) {
+			String name = file.getName().toLowerCase();
+			return name.endsWith(".htm") || name.endsWith(".html");
+		}
+		return false;
 	}
 
 	@Override
 	public String getDescription() {
-		return "HTML и HTM файлы"; //сформируем описание выбираемых типов файлов
+		return "HTML и HTM файлы";
 	}
 }
