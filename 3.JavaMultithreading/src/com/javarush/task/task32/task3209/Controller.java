@@ -4,6 +4,7 @@ import javax.swing.text.html.HTMLDocument;
 import javax.swing.text.html.HTMLEditorKit;
 import java.io.File;
 import java.io.StringReader;
+import java.io.StringWriter;
 
 /**
  * Created by Taly on 15.01.2018.
@@ -59,7 +60,16 @@ public class Controller {
 		} catch (Exception e) { //блокируем исключения и логируем их
 			ExceptionHandler.log(e);
 		}
+	}
 
-
+	public String getPlainText() { //должен получать текст из документа со всеми html тегами
+		StringWriter stringWriter = new StringWriter(); //Создадим объект StringWriter
+		HTMLEditorKit htmlEditorKit = new HTMLEditorKit(); //Создадим объект класса HTMLEditorKit
+		try { //Перепишем все содержимое из документа document в созданный объект StringWriter
+			htmlEditorKit.write(stringWriter, document, 0, document.getLength());
+		} catch (Exception e) { //блокируем исключения и логируем их
+			ExceptionHandler.log(e);
+		}
+		return stringWriter.toString(); //вернем полученный текст
 	}
 }
