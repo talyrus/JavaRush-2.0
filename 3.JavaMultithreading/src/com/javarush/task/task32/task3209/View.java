@@ -44,7 +44,7 @@ public class View extends JFrame implements ActionListener {
 				controller.exit();
 				break;
 			case "О программе":
-				this.showAbout();
+				showAbout();
 				break;
 		}
 	}
@@ -59,8 +59,8 @@ public class View extends JFrame implements ActionListener {
 
 	public void init() { //инициализация представления
 		initGui();
-		this.addWindowListener(new FrameListener(this)); //для текущего окна зарегистрируем слушателя
-		this.setVisible(true); // покажем окно
+		addWindowListener(new FrameListener(this)); //для текущего окна зарегистрируем слушателя
+		setVisible(true); // покажем окно
 	}
 
 	public void exit() {
@@ -68,8 +68,8 @@ public class View extends JFrame implements ActionListener {
 	}
 
 	public void initMenuBar() { //инициализация меню
-		JMenuBar jMenuBar = new JMenuBar();
-		MenuHelper menuHelper = new MenuHelper();
+		JMenuBar jMenuBar = new JMenuBar(); //создаем новый объект типа JMenuBar. Это панель меню
+		MenuHelper menuHelper = new MenuHelper(); // инициализируем меню
 		menuHelper.initFileMenu(this, jMenuBar);
 		menuHelper.initEditMenu(this, jMenuBar);
 		menuHelper.initStyleMenu(this, jMenuBar);
@@ -77,7 +77,8 @@ public class View extends JFrame implements ActionListener {
 		menuHelper.initColorMenu(this, jMenuBar);
 		menuHelper.initFontMenu(this, jMenuBar);
 		menuHelper.initHelpMenu(this, jMenuBar);
-		this.getContentPane().add(jMenuBar, BorderLayout.NORTH);
+		//В верхнюю (NORTH) часть панели контента текущего фрейма добавим панель меню
+		getContentPane().add(jMenuBar, BorderLayout.NORTH);
 	}
 
 	public void initEditor() { //инициализация панелей редактора
@@ -94,7 +95,7 @@ public class View extends JFrame implements ActionListener {
 		// и установили его в качестве слушателя изменений в tabbedPane.
 		tabbedPane.addChangeListener(tabbedPaneChangeListener);
 		// Добавили по центру панели контента текущего фрейма нашу панель с вкладками.
-		this.getContentPane().add(tabbedPane, BorderLayout.CENTER);
+		getContentPane().add(tabbedPane, BorderLayout.CENTER);
 	}
 
 	public void initGui() { //инициализация графического интерфейса

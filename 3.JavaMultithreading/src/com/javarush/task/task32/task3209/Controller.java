@@ -44,7 +44,7 @@ public class Controller {
 		}
 		HTMLEditorKit htmlEditorKit = new HTMLEditorKit();
 		//создадим новый документ
-		HTMLDocument document = (HTMLDocument) htmlEditorKit.createDefaultDocument();
+		document = (HTMLDocument) htmlEditorKit.createDefaultDocument();
 		//добавим ему слушателя правок
 		document.addUndoableEditListener(view.getUndoListener());
 		view.update(); //вызовем у представления метод update()
