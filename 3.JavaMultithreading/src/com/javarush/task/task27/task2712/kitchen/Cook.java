@@ -25,6 +25,7 @@ public class Cook extends Observable implements Observer { //класс буде
 	//- arg - само значение, в нашем случае - это объект Order
 	public void update(Observable observable, Object arg) { //Метод update в классе Cook должен выводить на экран строку форматированную согласно заданию.
 		ConsoleHelper.writeMessage("Start cooking - " + arg);
+
 		setChanged();
 		notifyObservers(arg);
 	}

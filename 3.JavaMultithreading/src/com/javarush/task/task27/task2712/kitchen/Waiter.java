@@ -12,5 +12,6 @@ public class Waiter implements Observer {
 	@Override
 	public void update(Observable observable, Object arg) {
 		ConsoleHelper.writeMessage(arg + " was cooked by " + observable);
+
 	} //будет относить заказы назад к столику. Официант будет безымянным.
 }
