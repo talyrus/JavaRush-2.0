@@ -11,13 +11,13 @@ public enum Dish { // список блюд
 	Water;
 
 	public static String allDishesToString() { // отображение блюд пользователю
-		Dish[] allDish = Dish.values(); // получим массив, содержащий список констант перечисления
-		StringBuilder stringBuilder = new StringBuilder();
-		for (Dish dish : allDish) { // сформируем динамический список перечислений
-			stringBuilder.append(dish + ", ");
+		StringBuilder stringBuilder = new StringBuilder("");
+		Dish[] dishes = Dish.values();
+		stringBuilder.append(dishes[0]);
+		for (int i = 1; i < dishes.length; i++) {
+			stringBuilder.append(", ").append(dishes[i]);
 		}
-		// возвратим список, отрезав последние два символа
-		return stringBuilder.delete(stringBuilder.length() - 2, stringBuilder.length()).toString();
+		return stringBuilder.toString();
 	}
 }
 
