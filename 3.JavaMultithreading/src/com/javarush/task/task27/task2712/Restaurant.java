@@ -12,7 +12,6 @@ public class Restaurant {
 		tablet.createOrder();
 		//В методе main класса Restaurant должен быть создан новый повар
 		// и добавлен планшету в качестве наблюдателя с помощью метода addObserver.
-
 		Cook cook = new Cook("Amigo");
 		tablet.addObserver(cook);
 		Waiter waiter = new Waiter();

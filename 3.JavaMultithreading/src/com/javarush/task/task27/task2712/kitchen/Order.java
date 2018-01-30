@@ -23,7 +23,20 @@ public class Order { // в классе Order (заказ) должна быть
 		if (dishes.isEmpty()) {
 			return "";
 		} else {
-			return "Your order: " + dishes + " of " + tablet;
+			return "Your order: " + dishes + " of " + tablet + ", cooking time " + getTotalCookingTime() + "min";
 		}
 	}
+
+	public int getTotalCookingTime() { //вернем количество времени требующееся на приготовление текущего заказа.
+		int timeCooking = 0;
+		for (Dish el : dishes) {
+			timeCooking += el.getDuration();
+		}
+		return timeCooking;
+	}
+
+	public boolean isEmpty() {
+		return dishes.isEmpty();
+	}
+
 }

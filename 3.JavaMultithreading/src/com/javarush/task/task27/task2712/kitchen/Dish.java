@@ -4,11 +4,17 @@ package com.javarush.task.task27.task2712.kitchen;
  * Created by Taly on 24.01.2018.
  */
 public enum Dish { // список блюд
-	Fish,
-	Steak,
-	Soup,
-	Juice,
-	Water;
+	Fish(25),
+	Steak(30),
+	Soup(15),
+	Juice(5),
+	Water(3);
+
+	Dish(int duration) {
+		this.duration = duration;
+	}
+
+	private int duration;
 
 	public static String allDishesToString() { // отображение блюд пользователю
 		StringBuilder stringBuilder = new StringBuilder("");
@@ -18,6 +24,10 @@ public enum Dish { // список блюд
 			stringBuilder.append(", ").append(dishes[i]);
 		}
 		return stringBuilder.toString();
+	}
+
+	public int getDuration() {
+		return duration;
 	}
 }
 
