@@ -1,5 +1,6 @@
 package com.javarush.task.task27.task2712;
 
+import com.javarush.task.task27.task2712.ad.AdvertisementManager;
 import com.javarush.task.task27.task2712.kitchen.Order;
 
 import java.io.IOException;
@@ -26,6 +27,8 @@ public class Tablet extends Observable { //Класс Tablet должен быт
 			ConsoleHelper.writeMessage(order.toString());
 			setChanged();       //В методе createOrder класса Tablet должен быть вызван метод setChanged.
 			notifyObservers(order); //В методе createOrder класса Tablet должен быть вызван метод notifyObservers с текущим заказом в качестве параметра.
+			AdvertisementManager advertisementManager = new AdvertisementManager(order.getTotalCookingTime() * 60);
+			advertisementManager.processVideos();
 		} catch (IOException e) {
 			logger.log(Level.SEVERE, "Console is unavailable.");
 		}
