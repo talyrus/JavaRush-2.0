@@ -12,7 +12,7 @@ import java.util.List;
  * Created by Taly on 24.01.2018.
  */
 public class ConsoleHelper {
-	private final static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+	private static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
 	public static void writeMessage(String message) { //для вывода message в консоль
 		System.out.println(message);

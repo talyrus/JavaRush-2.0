@@ -9,7 +9,7 @@ public class Advertisement {
 	private long initialAmount; // начальная сумма, стоимость рекламы в копейках. Используем long, чтобы избежать проблем с округлением
 	private int hits; // количество оплаченных показов
 	private int duration; // продолжительность в секундах
-	private long amountPerOneDisplaying;
+	private long amountPerOneDisplaying; //стоимость одного показа рекламного объявления в копейках
 
 	public Advertisement(Object content, String name, long initialAmount, int hits, int duration) {
 		this.content = content;
@@ -18,6 +18,10 @@ public class Advertisement {
 		this.hits = hits;
 		this.duration = duration;
 		this.amountPerOneDisplaying = initialAmount / hits;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getName() {
@@ -32,11 +36,18 @@ public class Advertisement {
 		return amountPerOneDisplaying;
 	}
 
+	public int getHits() {
+		return hits;
+	}
+
 	public void revalidate() {
 		if (hits <= 0) {
 			throw new UnsupportedOperationException();
-		} else {
-			hits--;
 		}
+		if (hits == 1) {
+			amountPerOneDisplaying += initialAmount % amountPerOneDisplaying;
+		}
+		hits--;
+
 	}
 }

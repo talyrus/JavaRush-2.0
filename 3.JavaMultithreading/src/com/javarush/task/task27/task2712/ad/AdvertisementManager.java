@@ -1,5 +1,7 @@
 package com.javarush.task.task27.task2712.ad;
 
+import com.javarush.task.task27.task2712.ConsoleHelper;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -18,11 +20,12 @@ public class AdvertisementManager {
 		this.timeSeconds = timeSeconds;
 	}
 
-	public final void processVideos() {
-		List<Advertisement> videoList = new ArrayList<>(storage.list());
+	public void processVideos() throws NoVideoAvailableException {
+		List<Advertisement> videoList = new ArrayList<>(storage.list()); //список всего видео
 		if (videoList.size() == 0) { //Если нет рекламных видео, которые можно показать посетителю, то бросить NoVideoAvailableException
 			throw new NoVideoAvailableException();
 		}
+
 		Collections.sort(videoList, new Comparator<Advertisement>() {
 			@Override
 			public int compare(Advertisement o1, Advertisement o2) {
@@ -36,5 +39,31 @@ public class AdvertisementManager {
 				return Long.compare(oneSecondCost1, oneSecondCost2);
 			}
 		});
+		long sumAmount = 0;
+		int sumDuration = 0;
+
+		List<Advertisement> list = new ArrayList<>();
+
+		int timeLeft = timeSeconds;
+		for (Advertisement el : videoList) {
+			if (timeLeft < el.getDuration() || el.getHits() <= 0) {
+				continue;
+			}
+			list.add(el);
+			sumAmount += el.getAmountPerOneDisplaying();
+			sumDuration += el.getDuration();
+			timeLeft -= el.getDuration();
+		}
+		if (timeLeft == timeSeconds) {
+			throw new NoVideoAvailableException();
+		}
+
+		for (Advertisement el : list) {
+			ConsoleHelper.writeMessage(el.getName() + " is displaying... "
+					+ el.getAmountPerOneDisplaying() + ", "
+					+ el.getAmountPerOneDisplaying() * 1000 / el.getDuration());
+			el.revalidate();
+		}
+
 	}
 }
