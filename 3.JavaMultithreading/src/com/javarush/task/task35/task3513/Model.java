@@ -29,8 +29,8 @@ public class Model { //будет содержать игровую логику
 
 	private List<Tile> getEmptyTiles() { // должен возвращать список пустых плиток в массиве gameTiles.
 		List<Tile> listTile = new ArrayList<>(); // создадим список
-		for (int i = 0; i < FIELD_WIDTH; i++) { // берем колонку
-			for (int j = 0; j < FIELD_WIDTH; j++) { // берем строку
+		for (int i = 0; i < FIELD_WIDTH; i++) { // берем строку
+			for (int j = 0; j < FIELD_WIDTH; j++) { // берем колонку, перебираем вправо
 				if (gameTiles[i][j].isEmpty()) { // если вес плитки равен 0
 					listTile.add(gameTiles[i][j]); // добавим ее в список
 				}
@@ -41,8 +41,8 @@ public class Model { //будет содержать игровую логику
 
 	protected void resetGameTiles() { //должен заполнять массив gameTiles новыми плитками и менять значение двух из них с помощью двух вызовов метода addTile.
 		gameTiles = new Tile[FIELD_WIDTH][FIELD_WIDTH]; // создадим двухмерных массив
-		for (int i = 0; i < FIELD_WIDTH; i++) { // берем колонку
-			for (int j = 0; j < FIELD_WIDTH; j++) {     // берем строку
+		for (int i = 0; i < FIELD_WIDTH; i++) { // берем строку
+			for (int j = 0; j < FIELD_WIDTH; j++) {     // берем колонку, перебираем вправо
 				gameTiles[i][j] = new Tile();   // создаем в текущей позиции массива новую плитку
 			}
 		}
@@ -52,8 +52,8 @@ public class Model { //будет содержать игровую логику
 
 	private Boolean compressTiles(Tile[] tiles) { //метод сжатия плиток
 		boolean isChanged = false;
-		for (int i = 0; i < FIELD_WIDTH - 1; i++) { // берем колонку
-			for (int j = 0; j < FIELD_WIDTH - 1; j++) { // берем строку
+		for (int i = 0; i < FIELD_WIDTH - 1; i++) { // берем строку
+			for (int j = 0; j < FIELD_WIDTH - 1; j++) { // берем колонку, перебираем вправо
 				if (tiles[j].isEmpty() && !tiles[j + 1].isEmpty()) { // если вес проверяемой плитки равен 0, а плитки справа не равен 0
 					Tile temp = tiles[j]; // меняем их местами (сортировка пузырем)
 					tiles[j] = tiles[j + 1];
@@ -81,7 +81,7 @@ public class Model { //будет содержать игровую логику
 
 		if (isChanged) { // если произошло слияние
 			Tile temp;
-			for (int j = 0; j < FIELD_WIDTH - 1; j++) {
+			for (int j = 0; j < FIELD_WIDTH - 1; j++) { //берем строку
 				if (tiles[j].isEmpty() && !tiles[j + 1].isEmpty()) {
 					// если вес текущей плитки равен 0, а вес плитки справа не равен 0
 					temp = tiles[j]; // меняем их местами (сортировка пузырем)
@@ -108,5 +108,44 @@ public class Model { //будет содержать игровую логику
 			addTile();
 		}
 	}
+
+	private void rotate() { // метод поворота матрицы на 90 градусов против часовой стрелки
+		int size = FIELD_WIDTH;
+		for (int i = 0; i < size / 2; i++) { // получим центр матрицы (игрового поля)
+			for (int j = i; j < size - 1 - i; j++) { // берем строку
+				Tile temp = gameTiles[i][j]; // копируем верхнюю левую плитку во временную переменную
+				gameTiles[i][j] = gameTiles[j][size - 1 - i]; // в верхнюю левую копируем верхнюю правую
+				gameTiles[j][size - 1 - i] = gameTiles[size - 1 - i][size - 1 - j]; // В верхнюю правую копируем нижнюю правую
+				gameTiles[size - 1 - i][size - 1 - j] = gameTiles[size - 1 - j][i]; // в нижнюю правую копируем нижнюю левую
+				gameTiles[size - 1 - j][i] = temp; // в нижнюю левую копируем из временной переменной верхнюю левую
+			}
+		}
+	}
+
+	public void up() {
+		rotate();
+		left();
+		rotate();
+		rotate();
+		rotate();
+	}
+
+	public void down() {
+		rotate();
+		rotate();
+		rotate();
+		left();
+		rotate();
+	}
+
+	public void right() {
+		rotate();
+		rotate();
+		left();
+		rotate();
+		rotate();
+	}
+
+
 
 }
