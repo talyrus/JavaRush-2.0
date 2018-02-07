@@ -68,4 +68,5 @@ public class Tile { //описывает одну плитку.
 		}
 		return titleColor;
 	}
+
 }

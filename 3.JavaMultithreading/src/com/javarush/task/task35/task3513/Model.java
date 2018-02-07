@@ -28,11 +28,11 @@ public class Model { //будет содержать игровую логику
 	}
 
 	private List<Tile> getEmptyTiles() { // должен возвращать список пустых плиток в массиве gameTiles.
-		List<Tile> listTile = new ArrayList<>();
-		for (int i = 0; i < FIELD_WIDTH; i++) {
-			for (int j = 0; j < FIELD_WIDTH; j++) {
-				if (gameTiles[i][j].isEmpty()) {
-					listTile.add(gameTiles[i][j]);
+		List<Tile> listTile = new ArrayList<>(); // создадим список
+		for (int i = 0; i < FIELD_WIDTH; i++) { // берем колонку
+			for (int j = 0; j < FIELD_WIDTH; j++) { // берем ряд
+				if (gameTiles[i][j].isEmpty()) { // если вес плитки равен 0
+					listTile.add(gameTiles[i][j]); // добавим ее в список
 				}
 			}
 		}
@@ -40,10 +40,10 @@ public class Model { //будет содержать игровую логику
 	}
 
 	protected void resetGameTiles() { //должен заполнять массив gameTiles новыми плитками и менять значение двух из них с помощью двух вызовов метода addTile.
-		gameTiles = new Tile[FIELD_WIDTH][FIELD_WIDTH];
-		for (int i = 0; i < FIELD_WIDTH; i++) {
-			for (int j = 0; j < FIELD_WIDTH; j++) {
-				gameTiles[i][j] = new Tile();
+		gameTiles = new Tile[FIELD_WIDTH][FIELD_WIDTH]; // создадим двухмерных массив
+		for (int i = 0; i < FIELD_WIDTH; i++) { // берем колонку
+			for (int j = 0; j < FIELD_WIDTH; j++) {     // берем строку
+				gameTiles[i][j] = new Tile();   // создаем в текущей позиции массива новую плитку
 			}
 		}
 		addTile();
@@ -51,10 +51,10 @@ public class Model { //будет содержать игровую логику
 	}
 
 	private void compressTiles(Tile[] tiles) { //метод сжатия плиток
-		for (int i = 0; i < FIELD_WIDTH - 1; i++) {
-			for (int j = 0; j < FIELD_WIDTH - 1; j++) {
-				if (tiles[j].isEmpty() && !tiles[j + 1].isEmpty()) {
-					Tile temp = tiles[j];
+		for (int i = 0; i < FIELD_WIDTH - 1; i++) { // берем колонку
+			for (int j = 0; j < FIELD_WIDTH - 1; j++) { // берем ряд
+				if (tiles[j].isEmpty() && !tiles[j + 1].isEmpty()) { // если вес проверяемой плитки равен 0, а плитки справа не равен 0
+					Tile temp = tiles[j]; // меняем их местами (сортировка пузырем)
 					tiles[j] = tiles[j + 1];
 					tiles[j + 1] = temp;
 				}
@@ -64,23 +64,24 @@ public class Model { //будет содержать игровую логику
 
 	private void mergeTiles(Tile[] tiles) { // метод слияния плиток одного номинала
 		boolean isChanged = false;
-		for (int j = 0; j < 3; j++) {
+		for (int j = 0; j < FIELD_WIDTH - 1; j++) { // берем ряд и идем по плиткам вправо
 			if (!tiles[j].isEmpty() && tiles[j].value == tiles[j + 1].value) {
-				tiles[j].value *= 2;
-				tiles[j + 1].value = 0;
-				if (tiles[j].value > maxTile)
-					maxTile = tiles[j].value;
-				score += tiles[j].value;
+				// если вес проверяемой плитки не равен 0 и вес плитки равен весу плитки справа
+				tiles[j].value *= 2; // увеличиваем вес текущей плитки
+				tiles[j + 1].value = 0; // значению веса плитки справа присваиваем 0
+				if (tiles[j].value > maxTile) // если новый вес текущей плитки больше макс. веса плиток на поле
+					maxTile = tiles[j].value;   // присвоить новое значение макс. веса
+				score += tiles[j].value;    // увеличить значение счета
 				isChanged = true;
-
 			}
 		}
 
-		if (isChanged) {
+		if (isChanged) { // если произошло слияние
 			Tile temp;
-			for (int j = 0; j < 3; j++) {
+			for (int j = 0; j < FIELD_WIDTH - 1; j++) {
 				if (tiles[j].isEmpty() && !tiles[j + 1].isEmpty()) {
-					temp = tiles[j];
+					// если вес текущей плитки равен 0, а вес плитки справа не равен 0
+					temp = tiles[j]; // меняем их местами (сортировка пузырем)
 					tiles[j] = tiles[j + 1];
 					tiles[j + 1] = temp;
 				}
