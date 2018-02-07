@@ -30,7 +30,7 @@ public class Model { //будет содержать игровую логику
 	private List<Tile> getEmptyTiles() { // должен возвращать список пустых плиток в массиве gameTiles.
 		List<Tile> listTile = new ArrayList<>(); // создадим список
 		for (int i = 0; i < FIELD_WIDTH; i++) { // берем колонку
-			for (int j = 0; j < FIELD_WIDTH; j++) { // берем ряд
+			for (int j = 0; j < FIELD_WIDTH; j++) { // берем строку
 				if (gameTiles[i][j].isEmpty()) { // если вес плитки равен 0
 					listTile.add(gameTiles[i][j]); // добавим ее в список
 				}
@@ -50,21 +50,24 @@ public class Model { //будет содержать игровую логику
 		addTile();
 	}
 
-	private void compressTiles(Tile[] tiles) { //метод сжатия плиток
+	private Boolean compressTiles(Tile[] tiles) { //метод сжатия плиток
+		boolean isChanged = false;
 		for (int i = 0; i < FIELD_WIDTH - 1; i++) { // берем колонку
-			for (int j = 0; j < FIELD_WIDTH - 1; j++) { // берем ряд
+			for (int j = 0; j < FIELD_WIDTH - 1; j++) { // берем строку
 				if (tiles[j].isEmpty() && !tiles[j + 1].isEmpty()) { // если вес проверяемой плитки равен 0, а плитки справа не равен 0
 					Tile temp = tiles[j]; // меняем их местами (сортировка пузырем)
 					tiles[j] = tiles[j + 1];
 					tiles[j + 1] = temp;
+					isChanged = true;
 				}
 			}
 		}
+		return isChanged;
 	}
 
-	private void mergeTiles(Tile[] tiles) { // метод слияния плиток одного номинала
+	private Boolean mergeTiles(Tile[] tiles) { // метод слияния плиток одного номинала
 		boolean isChanged = false;
-		for (int j = 0; j < FIELD_WIDTH - 1; j++) { // берем ряд и идем по плиткам вправо
+		for (int j = 0; j < FIELD_WIDTH - 1; j++) { // берем строку и идем по плиткам вправо
 			if (!tiles[j].isEmpty() && tiles[j].value == tiles[j + 1].value) {
 				// если вес проверяемой плитки не равен 0 и вес плитки равен весу плитки справа
 				tiles[j].value *= 2; // увеличиваем вес текущей плитки
@@ -87,5 +90,23 @@ public class Model { //будет содержать игровую логику
 				}
 			}
 		}
+		return isChanged;
 	}
+
+	protected void left() {
+		/**
+		 * будет для каждой строки массива gameTiles вызывать методы compressTiles и mergeTiles
+		 * и добавлять одну плитку с помощью метода addTile в том случае, если это необходимо
+		 */
+		boolean isChanged = false;
+		for (int j = 0; j < FIELD_WIDTH; j++) { // берем строку
+			if (compressTiles(gameTiles[j]) | mergeTiles(gameTiles[j])) {
+				isChanged = true;
+			}
+		}
+		if (isChanged == true) {
+			addTile();
+		}
+	}
+
 }
