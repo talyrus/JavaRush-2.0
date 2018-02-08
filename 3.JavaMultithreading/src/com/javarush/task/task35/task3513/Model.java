@@ -216,4 +216,31 @@ public class Model { //будет содержать игровую логику
 				break;
 		}
 	}
+
+	public boolean hasBoardChanged() {
+		int gameTilesWt = 0;
+		int previousStatesWt = 0;
+
+		Tile[][] psTile = previousStates.peek();
+		for (int i = 0; i < gameTiles.length; i++) {
+			for (int j = 0; j < gameTiles[0].length; j++) {
+				gameTilesWt += gameTiles[i][j].value;
+				previousStatesWt += psTile[i][j].value;
+			}
+		}
+		return gameTilesWt != previousStatesWt;
+	}
+
+	public MoveEfficiency getMoveEfficiency(Move move) {
+		MoveEfficiency moveEfficiency;
+		move.move();
+		if (hasBoardChanged()) { //если ход изменил состояние игрового поля
+			// получим количество пустых клеток, счет
+			moveEfficiency = new MoveEfficiency(getEmptyTiles().size(), score, move);
+		} else { //если ход не меняет состояние игрового поля
+			moveEfficiency = new MoveEfficiency(-1, 0, move);
+		}
+		rollback();
+		return moveEfficiency;
+	}
 }
