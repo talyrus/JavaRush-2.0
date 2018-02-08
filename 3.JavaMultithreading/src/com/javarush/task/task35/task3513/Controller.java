@@ -56,4 +56,8 @@ public class Controller extends KeyAdapter { //будет следить за н
 		}
 		view.repaint();
 	}
+
+	public View getView() {
+		return view;
+	}
 }
