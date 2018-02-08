@@ -50,10 +50,14 @@ public class Controller extends KeyAdapter { //будет следить за н
 			if (e.getKeyCode() == KeyEvent.VK_DOWN) {
 				model.down();
 			}
+			if (e.getKeyCode() == KeyEvent.VK_Z) {
+				model.rollback();
+			}
 		}
 		if (model.maxTile == WINNING_TILE) {
 			view.isGameWon = true;
 		}
+
 		view.repaint();
 	}
 

@@ -102,6 +102,9 @@ public class Model { //будет содержать игровую логику
 		 * будет для каждой строки массива gameTiles вызывать методы compressTiles и mergeTiles
 		 * и добавлять одну плитку с помощью метода addTile в том случае, если это необходимо
 		 */
+		if (isSaveNeeded) {
+			saveState(gameTiles); //если true, выполняем сохранение состояния перед сдвигом
+		}
 		boolean isChanged = false;
 		for (int j = 0; j < FIELD_WIDTH; j++) { // берем строку
 			if (compressTiles(gameTiles[j]) | mergeTiles(gameTiles[j])) {
@@ -111,6 +114,7 @@ public class Model { //будет содержать игровую логику
 		if (isChanged == true) {
 			addTile();
 		}
+		isSaveNeeded = true;
 	}
 
 	private void rotate() { // метод поворота матрицы на 90 градусов против часовой стрелки
@@ -127,6 +131,7 @@ public class Model { //будет содержать игровую логику
 	}
 
 	public void up() {
+		saveState(gameTiles);
 		rotate();
 		left();
 		rotate();
@@ -135,6 +140,7 @@ public class Model { //будет содержать игровую логику
 	}
 
 	public void down() {
+		saveState(gameTiles);
 		rotate();
 		rotate();
 		rotate();
@@ -143,6 +149,7 @@ public class Model { //будет содержать игровую логику
 	}
 
 	public void right() {
+		saveState(gameTiles);
 		rotate();
 		rotate();
 		left();
@@ -174,10 +181,10 @@ public class Model { //будет содержать игровую логику
 	}
 
 	private void saveState(Tile[][] currentState) {
-		Tile[][] newState = new Tile[currentState.length][currentState.length];
+		Tile[][] newState = new Tile[currentState.length][currentState[0].length];
 		for (int i = 0; i < currentState.length; i++) {
-			for (int j = 0; j < currentState.length; j++) {
-				newState[i][j] = currentState[i][j];
+			for (int j = 0; j < currentState[0].length; j++) {
+				newState[i][j] = new Tile(currentState[i][j].value);
 			}
 		}
 		previousStates.push(newState);
