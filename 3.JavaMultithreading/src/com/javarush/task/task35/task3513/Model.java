@@ -2,6 +2,7 @@ package com.javarush.task.task35.task3513;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 /**
  * Created by Taly on 06.02.2018.
@@ -11,6 +12,9 @@ public class Model { //будет содержать игровую логику
 	private Tile[][] gameTiles; //Приватный двумерный массив состоящий из объектов класса Tile.
 	protected int score;    //хранит текущий счет
 	protected int maxTile;  // хранит максимальный вес плитки на игровом поле
+	private Stack<Tile[][]> previousStates = new Stack<>();
+	private Stack<Integer> previousScores = new Stack<>();
+	private boolean isSaveNeeded = true;
 
 	public Model() { //инициализирующий игровое поле и заполняющий его пустыми плитками.
 		resetGameTiles();
@@ -167,5 +171,24 @@ public class Model { //будет содержать игровую логику
 			}
 		}
 		return false;
+	}
+
+	private void saveState(Tile[][] currentState) {
+		Tile[][] newState = new Tile[currentState.length][currentState.length];
+		for (int i = 0; i < currentState.length; i++) {
+			for (int j = 0; j < currentState.length; j++) {
+				newState[i][j] = currentState[i][j];
+			}
+		}
+		previousStates.push(newState);
+		previousScores.push(score);
+		isSaveNeeded = false;
+	}
+
+	public void rollback() {
+		if (!previousStates.empty() && !previousScores.empty()) {
+			gameTiles = previousStates.pop();
+			score = previousScores.pop();
+		}
 	}
 }
