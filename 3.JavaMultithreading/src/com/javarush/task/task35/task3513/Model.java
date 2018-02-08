@@ -198,4 +198,22 @@ public class Model { //будет содержать игровую логику
 			score = previousScores.pop();
 		}
 	}
+
+	public void randomMove() { //будет вызывать один из методов движения случайным образом
+		int n = ((int) (Math.random() * 100)) % 4; //число будет содержать целое псевдослучайное число в диапазоне [0..3]
+		switch (n) {
+			case 0:
+				left();
+				break;
+			case 1:
+				right();
+				break;
+			case 2:
+				up();
+				break;
+			case 3:
+				down();
+				break;
+		}
+	}
 }
