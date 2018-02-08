@@ -146,6 +146,26 @@ public class Model { //будет содержать игровую логику
 		rotate();
 	}
 
+	public Tile[][] getGameTiles() { //геттер для поля gameTiles
+		return gameTiles;
+	}
 
-
+	public boolean canMove() { //true в случае, если в текущей позиции возможно сделать ход так,
+		// чтобы состояние игрового поля изменилось. Иначе - false.
+		if (!getEmptyTiles().isEmpty()) // если есть возможность хода (есть пустые плитки)
+			return true;
+		for (int i = 0; i < gameTiles.length; i++) { // строка
+			for (int j = 1; j < gameTiles.length; j++) { // ряд
+				if (gameTiles[i][j].value == gameTiles[i][j - 1].value) // плитка равна плитке слева
+					return true;
+			}
+		}
+		for (int j = 0; j < gameTiles.length; j++) { // ряд
+			for (int i = 1; i < gameTiles.length; i++) { // строка
+				if (gameTiles[i][j].value == gameTiles[i - 1][j].value) // плитка равна плитке сверху
+					return true;
+			}
+		}
+		return false;
+	}
 }
