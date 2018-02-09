@@ -1,8 +1,6 @@
 package com.javarush.task.task35.task3513;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Stack;
+import java.util.*;
 
 /**
  * Created by Taly on 06.02.2018.
@@ -242,5 +240,18 @@ public class Model { //будет содержать игровую логику
 		}
 		rollback();
 		return moveEfficiency;
+	}
+
+	public void autoMove() { //будет выбирать лучший из возможных ходов и выполнять его
+		//Создадим локальную PriorityQueue с параметром Collections.reverseOrder()
+		// (для того, чтобы вверху очереди всегда был максимальный элемент) и размером равным четырем.
+		PriorityQueue<MoveEfficiency> priorityQueue = new PriorityQueue(4, Collections.reverseOrder());
+		//Заполним PriorityQueue четырьмя объектами типа MoveEfficiency (по одному на каждый вариант хода).
+		priorityQueue.offer(getMoveEfficiency(this::left));
+		priorityQueue.offer(getMoveEfficiency(this::right));
+		priorityQueue.offer(getMoveEfficiency(this::down));
+		priorityQueue.offer(getMoveEfficiency(this::up));
+		Move move = priorityQueue.peek().getMove();//Возьмем верхний элемент
+		move.move();        //и выполним ход связанный с ним.
 	}
 }

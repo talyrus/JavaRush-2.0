@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="3.JavaMultithreading:jar">
+    <output-path>D:/Temp</output-path>
+    <root id="archive" name="3.JavaMultithreading.jar">
+      <element id="module-output" name="3.JavaMultithreading" />
+    </root>
+  </artifact>
+</component>

@@ -56,6 +56,9 @@ public class Controller extends KeyAdapter { //будет следить за н
 			if (e.getKeyCode() == KeyEvent.VK_R) {
 				model.randomMove();
 			}
+			if (e.getKeyCode() == KeyEvent.VK_A) {
+				model.autoMove();
+			}
 		}
 		if (model.maxTile == WINNING_TILE) {
 			view.isGameWon = true;
