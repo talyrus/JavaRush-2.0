@@ -67,7 +67,7 @@ public class Model { //будет содержать игровую логику
 		return isChanged;
 	}
 
-	private Boolean mergeTiles(Tile[] tiles) { // метод слияния плиток одного номинала
+	private boolean mergeTiles(Tile[] tiles) { // метод слияния плиток одного номинала
 		boolean isChanged = false;
 		for (int j = 0; j < FIELD_WIDTH - 1; j++) { // берем строку и идем по плиткам вправо
 			if (!tiles[j].isEmpty() && tiles[j].value == tiles[j + 1].value) {
