@@ -26,16 +26,17 @@ public class Tablet extends Observable { //Класс Tablet должен быт
 		try {
 			order = new Order(this);
 			ConsoleHelper.writeMessage(order.toString());
-			setChanged();       //В методе createOrder класса Tablet должен быть вызван метод setChanged.
-			notifyObservers(order); //В методе createOrder класса Tablet должен быть вызван метод notifyObservers с текущим заказом в качестве параметра.
 			if (!order.isEmpty()) {
-				AdvertisementManager advertisementManager = new AdvertisementManager(order.getTotalCookingTime() * 60);
-				advertisementManager.processVideos();
+				try {
+					new AdvertisementManager(order.getTotalCookingTime() * 60).processVideos();
+				} catch (NoVideoAvailableException e) {
+					logger.log(Level.INFO, "No video is available for the order " + order);
+				}
+				setChanged();
+				notifyObservers(order);
 			}
 		} catch (IOException e) {
 			logger.log(Level.SEVERE, "Console is unavailable.");
-		} catch (NoVideoAvailableException e) {
-			logger.log(Level.INFO, "No video is available for the order " + order); //если нет рекламных видео
 		}
 		return order;
 	}

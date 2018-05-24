@@ -8,7 +8,7 @@ import java.util.List;
  */
 public class AdvertisementStorage { //хранилище рекламных роликов
 	private static AdvertisementStorage instance = new AdvertisementStorage();
-	private final List<Advertisement> videos = new ArrayList();
+	private final List<Advertisement> videos = new ArrayList<>();
 
 	private AdvertisementStorage() {
 		Object someContent = new Object();

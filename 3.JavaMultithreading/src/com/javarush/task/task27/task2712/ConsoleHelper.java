@@ -24,15 +24,28 @@ public class ConsoleHelper {
 
 	public static List<Dish> getAllDishesForOrder() throws IOException { //просит пользователя выбрать блюдо и добавляет его в список
 		List<Dish> dishes = new ArrayList<>(); // создадим список для выбранных пользователем блюд
-		ConsoleHelper.writeMessage(Dish.allDishesToString()); //выведем список блюд
-		ConsoleHelper.writeMessage("Выберите необходимое блюдо... Если закончили - введите 'exit'");
 
-		String selectDish;
-		while (!(selectDish = readString()).equals("exit")) { // пока пользователь не набрал exit считывае блюда
-			try {
-				dishes.add(Dish.valueOf(selectDish)); //находим в ENUM введенное блюдо и добавляем его в список выбора
-			} catch (IllegalArgumentException e) {
-				ConsoleHelper.writeMessage("Блюдо отсутствует!"); // если блюда нет в ENUM, сообщим пользователю
+		ConsoleHelper.writeMessage("Выберите блюда. Для завершения наберите 'exit'.");
+		ConsoleHelper.writeMessage(Dish.allDishesToString()); //выведем список блюд
+
+		while (true) {
+			String dishToOrder = readString();
+			if (dishToOrder.equalsIgnoreCase("exit")) {
+				break;
+			}
+
+			if (dishToOrder.isEmpty()) {
+				writeMessage("Блюдо не выбрано");
+				continue;
+			}
+			boolean found = false;
+			for (Dish d : Dish.values())
+				if (d.name().equalsIgnoreCase(dishToOrder)) {
+					dishes.add(d);
+					found = true;
+				}
+			if (!found) {
+				writeMessage("Нет такого блюда");
 			}
 		}
 		return dishes;

@@ -15,16 +15,17 @@ public class Order { // в классе Order (заказ) должна быть
 
 	public Order(Tablet tablet) throws IOException {
 		this.tablet = tablet;
-		dishes = ConsoleHelper.getAllDishesForOrder();
+		this.dishes = ConsoleHelper.getAllDishesForOrder();
 	}
 
 	@Override
 	public String toString() {
-		if (dishes.isEmpty()) {
+		/*if (dishes.isEmpty()) {
 			return "";
 		} else {
 			return "Your order: " + dishes + " of " + tablet;
-		}
+		}*/
+		return dishes.isEmpty() ? "" : "Your order: " + dishes + " of " + tablet;
 	}
 
 	public int getTotalCookingTime() { //вернем количество времени требующееся на приготовление текущего заказа.
