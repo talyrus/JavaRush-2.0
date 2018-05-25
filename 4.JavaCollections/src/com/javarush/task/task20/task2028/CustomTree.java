@@ -46,9 +46,9 @@ public class CustomTree extends AbstractList<String> implements Cloneable, Seria
 			list.add(String.valueOf(i));
 		}
 
-		//System.out.println("Expected 3, actual is " + ((CustomTree) list).getParent("8"));
-		//list.remove("5");
-		//System.out.println("Expected null, actual is " + ((CustomTree) list).getParent("11"));
+		System.out.println("Expected 3, actual is " + ((CustomTree) list).getParent("8"));
+		list.remove("5");
+		System.out.println("Expected null, actual is " + ((CustomTree) list).getParent("11"));
 	}
 
 
@@ -77,7 +77,10 @@ public class CustomTree extends AbstractList<String> implements Cloneable, Seria
 					queue.offer(currentNode.rightChild);
 				}
 			}
+			currentNode.availableToAddRightChildren = true;
+			currentNode.availableToAddLeftChildren = true;
 		}
+
 		return false;
 	}
 
@@ -137,9 +140,15 @@ public class CustomTree extends AbstractList<String> implements Cloneable, Seria
 		return size;
 	}
 
-	/*@Override
+	@Override
 	public boolean remove(Object o) {
-		String s = (String) o;
+		String s;
+		if (o instanceof String) {
+			s = (String) o;
+		} else {
+			throw new UnsupportedOperationException();
+		}
+
 		Queue<Entry<String>> queue = new LinkedList<>();
 		queue.add(root);
 		while (!queue.isEmpty()) {
@@ -160,7 +169,7 @@ public class CustomTree extends AbstractList<String> implements Cloneable, Seria
 			}
 		}
 		return false;
-	}*/
+	}
 
 	public String getParent(String entryName) {
 		Queue<Entry<String>> queue = new LinkedList<>();
