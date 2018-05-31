@@ -14,6 +14,7 @@ public class Solution {
 		int number = Integer.parseInt(args[1]);
 		String text = args[2];
 
+
 		//RandomAccessFile raf = new RandomAccessFile(fileName, "rw");
 
 		byte[] buffer = new byte[text.length()];
@@ -29,6 +30,7 @@ public class Solution {
 		raf.seek(raf.length());
 		raf.write(writeToFile.getBytes());
 		raf.close();
+
 
 	}
 }
