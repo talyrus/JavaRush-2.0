@@ -17,8 +17,8 @@ public class Solution {
 		int simbol;
 		StringBuffer buffer = new StringBuffer();
 		try {
-			while ((simbol = reader.read()) != -1) {
-				buffer.append(Character.toString((char) (simbol + key)));
+			while ((simbol = reader.read()) != -1) { //считаем числовое представление символа
+				buffer.append(Character.toString((char) (simbol + key))); // прибавим к нему значение ключа и добавим в буфер
 			}
 		} catch (Exception e) {
 			return new String();
