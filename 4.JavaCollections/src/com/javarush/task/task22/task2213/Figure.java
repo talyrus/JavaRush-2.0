@@ -26,5 +26,35 @@ public class Figure {
 		return matrix;
 	}
 
+	public void left() { //для движения фигурки влево
 
+	}
+
+	public void right() { //для движения фигурки вправо
+
+	}
+
+	public void down() { //для движения фигурки вниз.
+
+	}
+
+	public void up() { //для движения фигурки вверх.
+
+	}
+
+	public void rotate() { //для поворота фигурки вокруг главной диагонали.
+
+	}
+
+	public void downMaximum() { //падение фигурки в низ до дна.
+
+	}
+
+	public boolean isCurrentPositionAvailable() { //проверка - может ли фигурка быть помещена в текущую позицию
+		return true;
+	}
+
+	public void landed() { //вызывается, когда фигурка достигла дна или уперлась в другую фигурку
+
+	}
 }
