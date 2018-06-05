@@ -18,4 +18,12 @@ public class Tetris {
 	public Figure getFigure() {
 		return figure;
 	}
+
+	public void run() {
+
+	}
+
+	public void step() {
+
+	}
 }
