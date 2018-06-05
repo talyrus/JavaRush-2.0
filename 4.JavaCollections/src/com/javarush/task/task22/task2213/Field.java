@@ -27,7 +27,16 @@ public class Field {
 	}
 
 	public void print() { //объект будет отрисовывать на экран свое текущее состояние
-
+		for (int i = 0; i < height; i++) {
+			for (int j = 0; j < width; j++) {
+				if (matrix[i][j] == 0) {
+					System.out.print(".");
+				} else {
+					System.out.print("X");
+				}
+			}
+			System.out.println();
+		}
 	}
 
 	public void removeFullLines() { // будет удалять из матрицы полностью заполненные строки и сдвигать вышележащие строки вниз
