@@ -71,8 +71,7 @@ public class Field {
 
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
-                if (top + i >= height || left + j >= width)
-                    continue;
+                if (top + i >= height || left + j >= width) continue;
                 if (brickMatrix[i][j] == 1)
                     canvas[top + i][left + j] = 2;
             }
@@ -106,24 +105,28 @@ public class Field {
      * Удаляем заполненные линии
      */
     public void removeFullLines() {
-        //Например так:
         //Создаем список для хранения линий
-        ArrayList<int[]> listLines = new ArrayList<>();
+        ArrayList<int[]> lines = new ArrayList<int[]>();
+
         //Копируем все непустые линии в список.
         for (int i = 0; i < height; i++) {
-            int count = 0; // считаем единицы в строке
+            //подсчитываем количество единиц в строке - просто суммируем все ее значения
+            int count = 0;
             for (int j = 0; j < width; j++) {
                 count += matrix[i][j];
             }
-            if (count != width) { // если количество единиц в строке не равно ширине строки - добавим в список
-                listLines.add(matrix[i]);
-            }
+
+            //Если сумма строки не равна ее ширине - добавляем в список
+            if (count != width)
+                lines.add(matrix[i]);
         }
+
         //Добавляем недостающие строки в начало списка.
-        while (listLines.size() < height) {
-            listLines.add(0, new int[width]);
+        while (lines.size() < height) {
+            lines.add(0, new int[width]);
         }
+
         //Преобразуем список обратно в матрицу
-        matrix = listLines.toArray(new int[height][width]);
+        matrix = lines.toArray(new int[height][width]);
     }
 }
