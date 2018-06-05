@@ -8,6 +8,12 @@ public class Field {
 	private int height; // высота
 	private int[][] matrix; // y - высота (номер строки), x - ширина (номер столбца)
 
+	public Field(int width, int height) {
+		this.width = width;
+		this.height = height;
+		matrix = new int[height][width];
+	}
+
 	public int getWidth() {
 		return width;
 	}
@@ -18,12 +24,6 @@ public class Field {
 
 	public int[][] getMatrix() {
 		return matrix;
-	}
-
-	public Field(int width, int height) {
-		this.width = width;
-		this.height = height;
-		matrix = new int[height][width];
 	}
 
 	public void print() { //объект будет отрисовывать на экран свое текущее состояние
