@@ -46,6 +46,18 @@ public class Space {
 		return bombs;
 	}
 
+	public void run() {
+
+	}
+
+	public void draw() {
+
+	}
+
+	public void sleep(int ms) {
+
+	}
+
 	public static void main(String[] args) {
 
 	}
