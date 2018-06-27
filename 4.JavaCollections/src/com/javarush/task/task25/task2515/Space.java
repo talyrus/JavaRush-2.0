@@ -160,17 +160,17 @@ public class Space {
     public void removeDead() {
         //тут нужно удалить все умершие объекты из списков.
         //Кроме космического корабля - по нему определяем ищет еще игра или нет.
-        for (BaseObject pair : new ArrayList<>(bombs)) {
+        for (BaseObject pair: new ArrayList<>(bombs)) {
             if (!pair.isAlive()) {
                 bombs.remove(pair);
             }
         }
-        for (BaseObject pair : new ArrayList<>(rockets)) {
+        for (BaseObject pair: new ArrayList<>(rockets)) {
             if (!pair.isAlive()) {
                 rockets.remove(pair);
             }
         }
-        for (BaseObject pair : new ArrayList<>(ufos)) {
+        for (BaseObject pair: new ArrayList<>(ufos)) {
             if (!pair.isAlive()) {
                 ufos.remove(pair);
             }
