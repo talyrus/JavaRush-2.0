@@ -1,65 +1,198 @@
 package com.javarush.task.task25.task2515;
 
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
- * Created by Taly on 26.06.2018.
+ * Главный класс игры - Космос (Space)
  */
 public class Space {
-	private int width;
-	private int height;
-	private SpaceShip ship;
-	private ArrayList<Ufo> ufos = new ArrayList<>();
-	private ArrayList<Rocket> rockets = new ArrayList<>();
-	private ArrayList<Bomb> bombs = new ArrayList<>();
-	public static Space game;
+    //Ширина и высота игрового поля
+    private int width;
+    private int height;
 
-	public int getWidth() {
-		return width;
-	}
+    //Космический корабль
+    private SpaceShip ship;
+    //Список НЛО
+    private ArrayList<Ufo> ufos = new ArrayList<Ufo>();
+    //Список бомб
+    private ArrayList<Bomb> bombs = new ArrayList<Bomb>();
+    //Список ракет
+    private ArrayList<Rocket> rockets = new ArrayList<Rocket>();
 
-	public int getHeight() {
-		return height;
-	}
+    public Space(int width, int height) {
+        this.width = width;
+        this.height = height;
+    }
 
-	public SpaceShip getShip() {
-		return ship;
-	}
+    /**
+     * Основной цикл программы.
+     * Тут происходят все важные действия
+     */
+    public void run() {
+        //Создаем холст для отрисовки.
+        Canvas canvas = new Canvas(width, height);
 
-	public void setShip(SpaceShip ship) {
-		this.ship = ship;
-	}
+        //Создаем объект "наблюдатель за клавиатурой" и стартуем его.
+        KeyboardObserver keyboardObserver = new KeyboardObserver();
+        keyboardObserver.start();
 
-	public Space(int width, int height) {
-		this.width = width;
-		this.height = height;
-	}
+        //Игра работает, пока корабль жив
+        while (ship.isAlive()) {
+            //"наблюдатель" содержит события о нажатии клавиш?
+            if (keyboardObserver.hasKeyEvents()) {
+                KeyEvent event = keyboardObserver.getEventFromTop();
+                //Если "стрелка влево" - сдвинуть фигурку влево
+                System.out.print(event.getKeyCode());
+                if (event.getKeyCode() == KeyEvent.VK_LEFT)
+                    ship.moveLeft();
+                    //Если "стрелка вправо" - сдвинуть фигурку вправо
+                else if (event.getKeyCode() == KeyEvent.VK_RIGHT)
+                    ship.moveRight();
+                    //Если "пробел" - запускаем шарик
+                else if (event.getKeyCode() == KeyEvent.VK_SPACE)
+                    ship.fire();
+            }
 
-	public ArrayList<Ufo> getUfos() {
-		return ufos;
-	}
+            //двигаем все объекты игры
+            moveAllItems();
 
-	public ArrayList<Rocket> getRockets() {
-		return rockets;
-	}
+            //проверяем столкновения
+            checkBombs();
+            checkRockets();
+            //удаляем умершие объекты из списков
+            removeDead();
 
-	public ArrayList<Bomb> getBombs() {
-		return bombs;
-	}
+            //Создаем НЛО (1 раз в 10 ходов)
+            createUfo();
 
-	public void run(){
+            //Отрисовываем все объекты на холст, а холст выводим на экран
+            canvas.clear();
+            draw(canvas);
+            canvas.print();
 
-	}
+            //Пауза 300 миллисекунд
+            Space.sleep(300);
+        }
 
-	public void draw(){
+        //Выводим сообщение "Game Over"
+        System.out.println("Game Over!");
+    }
 
-	}
+    /**
+     * Двигаем все объекты игры
+     */
+    public void moveAllItems() {
+        //нужно получить список всех игровых объектов и у каждого вызвать метод move().
+        ArrayList<BaseObject> list = new ArrayList<>();
+        list.addAll(getAllItems());
+        for (BaseObject pair : list) {
+            pair.move();
+        }
 
-	public void sleep(int ms){
-		
-	}
+    }
 
-	public static void main(String[] args) {
+    /**
+     * Метод возвращает общий список, который содержит все объекты игры
+     */
+    public List<BaseObject> getAllItems() {
+        //нужно создать новый список и положить в него все игровые объекты.
+        ArrayList<BaseObject> list = new ArrayList<>();
+        list.add(ship);
+        list.addAll(ufos);
+        list.addAll(bombs);
+        list.addAll(rockets);
+        return list;
+    }
 
-	}
+    /**
+     * Создаем новый НЛО. 1 раз на 10 вызовов.
+     */
+    public void createUfo() {
+        //тут нужно создать новый НЛО.
+        //1 раз за 10 вызовов метода.
+    }
+
+    /**
+     * Проверяем бомбы.
+     * а) столкновение с кораблем (бомба и корабль умирают)
+     * б) падение ниже края игрового поля (бомба умирает)
+     */
+    public void checkBombs() {
+        //тут нужно проверить все возможные столкновения для каждой бомбы.
+    }
+
+    /**
+     * Проверяем рокеты.
+     * а) столкновение с НЛО (ракета и НЛО умирают)
+     * б) вылет выше края игрового поля (ракета умирает)
+     */
+    public void checkRockets() {
+        //тут нужно проверить все возможные столкновения для каждой ракеты.
+    }
+
+    /**
+     * Удаляем умерсшие объекты (бомбы, ракеты, НЛО) из списков
+     */
+    public void removeDead() {
+        //тут нужно удалить все умершие объекты из списков.
+        //Кроме космического корабля - по нему определяем ищет еще игра или нет.
+    }
+
+    /**
+     * Отрисовка всех объектов игры:
+     * а) заполняем весь холст точесками.
+     * б) отрисовываем все объекты на холст.
+     */
+    public void draw(Canvas canvas) {
+        //тут нужно отрисовать все объекты игры
+    }
+
+
+    public SpaceShip getShip() {
+        return ship;
+    }
+
+    public void setShip(SpaceShip ship) {
+        this.ship = ship;
+    }
+
+    public ArrayList<Ufo> getUfos() {
+        return ufos;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public ArrayList<Bomb> getBombs() {
+        return bombs;
+    }
+
+    public ArrayList<Rocket> getRockets() {
+        return rockets;
+    }
+
+    public static Space game;
+
+    public static void main(String[] args) throws Exception {
+        game = new Space(20, 20);
+        game.setShip(new SpaceShip(10, 18));
+        game.run();
+    }
+
+    /**
+     * Метод делает паузу длинной delay миллисекунд.
+     */
+    public static void sleep(int delay) {
+        try {
+            Thread.sleep(delay);
+        } catch (InterruptedException e) {
+        }
+    }
 }
