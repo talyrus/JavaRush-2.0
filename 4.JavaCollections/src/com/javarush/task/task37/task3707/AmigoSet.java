@@ -1,36 +1,40 @@
 package com.javarush.task.task37.task3707;
 
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
+import java.io.*;
 import java.util.*;
-import java.util.function.Consumer;
-import java.util.function.Predicate;
-import java.util.stream.Stream;
-public class AmigoSet<E> extends AbstractSet<E> implements Serializable, Cloneable, Set<E> {
+
+public class AmigoSet<E>
+		extends AbstractSet<E>
+		implements Serializable, Cloneable, Set<E> {
+
 	private static final Object PRESENT = new Object();
 	private transient HashMap<E, Object> map;
+
 	public AmigoSet() {
-		map = new HashMap<E, Object>();
+		map = new HashMap<>();
 	}
+
 	public AmigoSet(Collection<? extends E> collection) {
 		int capacity = Math.max(16, (int) (collection.size() / 0.75f + 1));
-		map = new HashMap<E, Object>(capacity);
+		map = new HashMap<>(capacity);
 		addAll(collection);
 	}
+
 	@Override
 	public Iterator<E> iterator() {
 		return map.keySet().iterator();
 	}
+
 	@Override
 	public int size() {
 		return map.size();
 	}
+
 	@Override
 	public boolean isEmpty() {
 		return map.isEmpty();
 	}
+
 	@Override
 	public boolean contains(Object o) {
 		return map.containsKey(o);
@@ -47,30 +51,10 @@ public class AmigoSet<E> extends AbstractSet<E> implements Serializable, Cloneab
 	}
 
 	@Override
-	public Spliterator<E> spliterator() {
-		return map.keySet().spliterator();
-	}
-
-	@Override
-	public boolean removeIf(Predicate<? super E> filter) {
-		return false;
-	}
-
-	@Override
-	public Stream<E> stream() {
-		return null;
-	}
-	@Override
 	public boolean add(E e) {
 		return map.put(e, PRESENT) == null;
 	}
-	@Override
-	public Stream<E> parallelStream() {
-		return null;
-	}
-	@Override
-	public void forEach(Consumer<? super E> action) {
-	}
+
 	@Override
 	public Object clone() {
 		try {
@@ -82,28 +66,28 @@ public class AmigoSet<E> extends AbstractSet<E> implements Serializable, Cloneab
 		}
 	}
 
-	private void writeObject(ObjectOutputStream out) throws IOException {
-		out.defaultWriteObject();
-		out.writeInt(HashMapReflectionHelper.callHiddenMethod(map, "capacity"));
-		out.writeFloat(HashMapReflectionHelper.callHiddenMethod(map, "loadFactor"));
-		out.writeInt(map.keySet().size()); //Потребуется при считывании файла (понимание какой обьем надо востановить)
+	private void writeObject(ObjectOutputStream outputStream) throws IOException {
+		outputStream.defaultWriteObject();
+		outputStream.writeInt(HashMapReflectionHelper.callHiddenMethod(map, "capacity"));
+		outputStream.writeFloat(HashMapReflectionHelper.callHiddenMethod(map, "loadFactor"));
+		outputStream.writeInt(map.keySet().size()); //Потребуется при считывании файла (понимание какой обьем надо востановить)
 		for (E e : map.keySet()) { //Запись производим по одному элементу
-			out.writeObject(e);
+			outputStream.writeObject(e);
 		}
 	}
 
-	private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
-		in.defaultReadObject();
-		int capacity = in.readInt();
-		float loadFactor = in.readFloat();
+	private void readObject(ObjectInputStream inputStream) throws IOException, ClassNotFoundException {
+		inputStream.defaultReadObject();
+		int capacity = inputStream.readInt();
+		float loadFactor = inputStream.readFloat();
 		map = new HashMap(capacity, loadFactor);
-		int size = in.readInt();
+		int size = inputStream.readInt();
 		for (int i = 0; i < size; i++) {
-			map.put((E) in.readObject(), PRESENT);
+			map.put((E) inputStream.readObject(), PRESENT);
 		}
 	}
 
-	/*public static void main(String[] args) throws IOException, ClassNotFoundException {
+	public static void main(String[] args) throws IOException, ClassNotFoundException {
 		HashSet<String> hashSet = new HashSet<>();
 		hashSet.add("ddd");
 		hashSet.add("rrrr");
@@ -120,5 +104,5 @@ public class AmigoSet<E> extends AbstractSet<E> implements Serializable, Cloneab
 		System.out.println(amigoSet);
 		System.out.println("________");
 		System.out.println(amigoSet1);
-	}*/
+	}
 }
