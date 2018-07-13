@@ -41,4 +41,5 @@ public class Solution {
 
 	static class C extends B {
 	}
+
 }
