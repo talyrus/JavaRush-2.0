@@ -1,6 +1,7 @@
 package com.javarush.task.task33.task3310;
 
 import com.javarush.task.task33.task3310.strategy.HashMapStorageStrategy;
+import com.javarush.task.task33.task3310.strategy.OurHashMapStorageStrategy;
 import com.javarush.task.task33.task3310.strategy.StorageStrategy;
 
 import java.util.Date;
@@ -14,6 +15,9 @@ public class Solution {
 	public static void main(String[] args) {
 		StorageStrategy strategy = new HashMapStorageStrategy(); //Внутри метода протестируй стратегию HashMapStorageStrategy с помощью 10000 элементов
 		testStrategy(strategy, 10000);
+
+		OurHashMapStorageStrategy strategy2 = new OurHashMapStorageStrategy();
+		testStrategy(strategy2, 10000);
 	}
 
 	public static Set<Long> getIds(Shortener shortener, Set<String> strings) { //должен для переданного множества строк возвращать множество идентификаторов
