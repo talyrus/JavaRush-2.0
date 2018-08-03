@@ -22,6 +22,9 @@ public class Solution {
 
 		OurHashBiMapStorageStrategy strategy4 = new OurHashBiMapStorageStrategy();
 		testStrategy(strategy4, 10000);
+
+		HashBiMapStorageStrategy strategy5 = new HashBiMapStorageStrategy();
+		testStrategy(strategy5, 10000);
 	}
 
 	public static Set<Long> getIds(Shortener shortener, Set<String> strings) { //должен для переданного множества строк возвращать множество идентификаторов
