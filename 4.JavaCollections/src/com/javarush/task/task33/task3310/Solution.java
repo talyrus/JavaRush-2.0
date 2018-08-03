@@ -1,5 +1,6 @@
 package com.javarush.task.task33.task3310;
 
+import com.javarush.task.task33.task3310.strategy.FileStorageStrategy;
 import com.javarush.task.task33.task3310.strategy.HashMapStorageStrategy;
 import com.javarush.task.task33.task3310.strategy.OurHashMapStorageStrategy;
 import com.javarush.task.task33.task3310.strategy.StorageStrategy;
@@ -18,6 +19,9 @@ public class Solution {
 
 		OurHashMapStorageStrategy strategy2 = new OurHashMapStorageStrategy();
 		testStrategy(strategy2, 10000);
+
+		FileStorageStrategy strategy3 = new FileStorageStrategy();
+		testStrategy(strategy3, 500);
 	}
 
 	public static Set<Long> getIds(Shortener shortener, Set<String> strings) { //должен для переданного множества строк возвращать множество идентификаторов
