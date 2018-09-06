@@ -1,6 +1,7 @@
 package com.javarush.task.task39.task3913;
 
 import com.javarush.task.task39.task3913.query.DateQuery;
+import com.javarush.task.task39.task3913.query.EventQuery;
 import com.javarush.task.task39.task3913.query.IPQuery;
 import com.javarush.task.task39.task3913.query.UserQuery;
 
@@ -12,7 +13,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-public class LogParser implements IPQuery, UserQuery, DateQuery {
+public class LogParser implements IPQuery, UserQuery, DateQuery, EventQuery {
 	private Path logDir;
 
 	public LogParser(Path logDir) {
@@ -397,5 +398,127 @@ public class LogParser implements IPQuery, UserQuery, DateQuery {
 			}
 		}
 		return dates;
+	}
+
+	@Override
+	public int getNumberOfAllEvents(Date after, Date before) {
+		return getAllEvents(after, before).size();
+	}
+
+	@Override
+	public Set<Event> getAllEvents(Date after, Date before) {
+		Set<Event> set = new HashSet<>();
+		for (LogRecord record : getParsedRecords(logDir)) {
+			if (isDateInside(after, before, record.getDate())) {
+				set.add(record.getEvent());
+			}
+		}
+		return set;
+	}
+
+	@Override
+	public Set<Event> getEventsForIP(String ip, Date after, Date before) {
+		Set<Event> set = new HashSet<>();
+		for (LogRecord record : getParsedRecords(logDir)) {
+			if (isDateInside(after, before, record.getDate()) && record.getIp().equals(ip)) {
+				set.add(record.getEvent());
+			}
+		}
+		return set;
+	}
+
+	@Override
+	public Set<Event> getEventsForUser(String user, Date after, Date before) {
+		Set<Event> set = new HashSet<>();
+		for (LogRecord record : getParsedRecords(logDir)) {
+			if (isDateInside(after, before, record.getDate()) && record.getUser().equals(user)) {
+				set.add(record.getEvent());
+			}
+		}
+		return set;
+	}
+
+	@Override
+	public Set<Event> getFailedEvents(Date after, Date before) {
+		Set<Event> set = new HashSet<>();
+		for (LogRecord record : getParsedRecords(logDir)) {
+			if (isDateInside(after, before, record.getDate()) && record.getStatus().equals(Status.FAILED)) {
+				set.add(record.getEvent());
+			}
+		}
+		return set;
+	}
+
+	@Override
+	public Set<Event> getErrorEvents(Date after, Date before) {
+		Set<Event> set = new HashSet<>();
+		for (LogRecord record : getParsedRecords(logDir)) {
+			if (isDateInside(after, before, record.getDate()) && record.getStatus().equals(Status.ERROR)) {
+				set.add(record.getEvent());
+			}
+		}
+		return set;
+	}
+
+	@Override
+	public int getNumberOfAttemptToSolveTask(int task, Date after, Date before) {
+		int i = 0;
+		for (LogRecord record : getParsedRecords(logDir)) {
+			if (isDateInside(after, before, record.getDate())
+					&& record.getEvent().equals(Event.SOLVE_TASK)
+					&& record.getTaskNumber() != null
+					&& !record.getTaskNumber().isEmpty()
+					&& Integer.parseInt(record.getTaskNumber()) == task) {
+				i++;
+			}
+		}
+		return i;
+	}
+
+	@Override
+	public int getNumberOfSuccessfulAttemptToSolveTask(int task, Date after, Date before) {
+		int i = 0;
+		for (LogRecord record : getParsedRecords(logDir)) {
+			if (isDateInside(after, before, record.getDate())
+					&& record.getEvent().equals(Event.DONE_TASK)
+					&& record.getTaskNumber() != null
+					&& !record.getTaskNumber().isEmpty()
+					&& Integer.parseInt(record.getTaskNumber()) == task) {
+				i++;
+			}
+		}
+		return i;
+	}
+
+	@Override
+	public Map<Integer, Integer> getAllSolvedTasksAndTheirNumber(Date after, Date before) {
+		Map<Integer, Integer> taskSolved = new HashMap<>();
+		for (LogRecord record : getParsedRecords(logDir)) {
+			if (isDateInside(after, before, record.getDate()) && record.getEvent().equals(Event.SOLVE_TASK)) {
+				int task = Integer.parseInt(record.getTaskNumber());
+				if (taskSolved.containsKey(task)) {
+					taskSolved.put(task, taskSolved.get(task) + 1);
+				} else {
+					taskSolved.put(task, 1);
+				}
+			}
+		}
+		return taskSolved;
+	}
+
+	@Override
+	public Map<Integer, Integer> getAllDoneTasksAndTheirNumber(Date after, Date before) {
+		Map<Integer, Integer> taskSolved = new HashMap<>();
+		for (LogRecord record : getParsedRecords(logDir)) {
+			if (isDateInside(after, before, record.getDate()) && record.getEvent().equals(Event.DONE_TASK)) {
+				int task = Integer.parseInt(record.getTaskNumber());
+				if (taskSolved.containsKey(task)) {
+					taskSolved.put(task, taskSolved.get(task) + 1);
+				} else {
+					taskSolved.put(task, 1);
+				}
+			}
+		}
+		return taskSolved;
 	}
 }
