@@ -1,5 +1,6 @@
 package com.javarush.task.task39.task3913;
 
+import com.javarush.task.task39.task3913.query.DateQuery;
 import com.javarush.task.task39.task3913.query.IPQuery;
 import com.javarush.task.task39.task3913.query.UserQuery;
 
@@ -11,7 +12,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-public class LogParser implements IPQuery, UserQuery {
+public class LogParser implements IPQuery, UserQuery, DateQuery {
 	private Path logDir;
 
 	public LogParser(Path logDir) {
@@ -285,5 +286,116 @@ public class LogParser implements IPQuery, UserQuery {
 			}
 		}
 		return users;
+	}
+
+	@Override
+	public Set<Date> getDatesForUserAndEvent(String user, Event event, Date after, Date before) {
+		Set<Date> dates = new HashSet<>();
+		for (LogRecord record : getParsedRecords(logDir)) {
+			if (isDateInside(after, before, record.getDate()) && user.equals(record.getUser()) && record.getEvent().equals(event)) {
+				dates.add(record.date);
+			}
+		}
+		return dates;
+	}
+
+	@Override
+	public Set<Date> getDatesWhenSomethingFailed(Date after, Date before) {
+		Set<Date> dates = new HashSet<>();
+		for (LogRecord record : getParsedRecords(logDir)) {
+			if (isDateInside(after, before, record.getDate()) && record.getStatus().equals(Status.FAILED)) {
+				dates.add(record.date);
+			}
+		}
+		return dates;
+	}
+
+	@Override
+	public Set<Date> getDatesWhenErrorHappened(Date after, Date before) {
+		Set<Date> dates = new HashSet<>();
+		for (LogRecord record : getParsedRecords(logDir)) {
+			if (isDateInside(after, before, record.getDate()) && record.getStatus().equals(Status.ERROR)) {
+				dates.add(record.date);
+			}
+		}
+		return dates;
+	}
+
+	@Override
+	public Date getDateWhenUserLoggedFirstTime(String user, Date after, Date before) {
+		Date date = null;
+		for (LogRecord record : getParsedRecords(logDir)) {
+			if (isDateInside(after, before, record.getDate()) && record.getUser().equals(user) && record.getEvent().equals(Event.LOGIN)) {
+				if (date == null)
+					date = record.getDate();
+				else
+					date = date.compareTo(record.getDate()) > 0 ? record.getDate() : date;
+			}
+		}
+		return date;
+	}
+
+	@Override
+	public Date getDateWhenUserSolvedTask(String user, int task, Date after, Date before) {
+		Date date = null;
+		for (LogRecord record : getParsedRecords(logDir)) {
+			if (isDateInside(after, before, record.getDate())
+					&& record.getUser().equals(user)
+					&& record.getEvent().equals(Event.SOLVE_TASK)
+					&& record.getTaskNumber() != null
+					&& !record.getTaskNumber().isEmpty()
+					&& Integer.parseInt(record.getTaskNumber()) == task) {
+				if (date == null)
+					date = record.getDate();
+				else
+					date = date.compareTo(record.getDate()) > 0 ? record.getDate() : date;
+			}
+		}
+		return date;
+	}
+
+	@Override
+	public Date getDateWhenUserDoneTask(String user, int task, Date after, Date before) {
+		Date date = null;
+		for (LogRecord record : getParsedRecords(logDir)) {
+			if (isDateInside(after, before, record.getDate())
+					&& record.getUser().equals(user)
+					&& record.getEvent().equals(Event.DONE_TASK)
+					&& record.getTaskNumber() != null
+					&& !record.getTaskNumber().isEmpty()
+					&& Integer.parseInt(record.getTaskNumber()) == task) {
+				if (date == null)
+					date = record.getDate();
+				else
+					date = date.compareTo(record.getDate()) > 0 ? record.getDate() : date;
+			}
+		}
+		return date;
+	}
+
+	@Override
+	public Set<Date> getDatesWhenUserWroteMessage(String user, Date after, Date before) {
+		Set<Date> dates = new HashSet<>();
+		for (LogRecord record : getParsedRecords(logDir)) {
+			if (isDateInside(after, before, record.getDate())
+					&& record.getUser().equals(user)
+					&& record.getEvent().equals(Event.WRITE_MESSAGE)) {
+				dates.add(record.date);
+			}
+		}
+		return dates;
+	}
+
+	@Override
+	public Set<Date> getDatesWhenUserDownloadedPlugin(String user, Date after, Date before) {
+		Set<Date> dates = new HashSet<>();
+		for (LogRecord record : getParsedRecords(logDir)) {
+			if (isDateInside(after, before, record.getDate())
+					&& record.getUser().equals(user)
+					&& record.getEvent().equals(Event.DOWNLOAD_PLUGIN)) {
+				dates.add(record.date);
+			}
+		}
+		return dates;
 	}
 }
