@@ -1,6 +1,7 @@
 package com.javarush.task.task39.task3913;
 
 import com.javarush.task.task39.task3913.query.IPQuery;
+import com.javarush.task.task39.task3913.query.UserQuery;
 
 import java.io.File;
 import java.io.IOException;
@@ -10,7 +11,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-public class LogParser implements IPQuery {
+public class LogParser implements IPQuery, UserQuery {
 	private Path logDir;
 
 	public LogParser(Path logDir) {
@@ -151,4 +152,138 @@ public class LogParser implements IPQuery {
 		}
 	}
 
+	@Override
+	public Set<String> getAllUsers() {
+		Set<String> result = new HashSet<>();
+		List<LogRecord> allRecords = getParsedRecords(logDir);
+		for (LogRecord logRecord : allRecords) {
+			if (!result.contains(logRecord.getUser())) {
+				result.add(logRecord.getUser());
+			}
+		}
+		return result;
+	}
+
+	@Override
+	public int getNumberOfUsers(Date after, Date before) {
+		int count = 0;
+		Set<String> result = new HashSet<>();
+		List<LogRecord> allRecords = getParsedRecords(logDir);
+		for (LogRecord logRecord : allRecords) {
+			if (!result.contains(logRecord.getUser())) {
+				result.add(logRecord.getUser());
+				if (isDateInside(after, before, logRecord.getDate()))
+					count++;
+			}
+		}
+		return count;
+	}
+
+	@Override
+	public int getNumberOfUserEvents(String user, Date after, Date before) {
+		Set<Event> set = new HashSet<>();
+		for (LogRecord record : getParsedRecords(logDir)) {
+			if (isDateInside(after, before, record.getDate())) {
+				if (record.getUser().equals(user))
+					set.add(record.getEvent());
+			}
+		}
+		return set.size();
+	}
+
+	@Override
+	public Set<String> getUsersForIP(String ip, Date after, Date before) {
+		Set<String> users = new HashSet<>();
+		for (LogRecord record : getParsedRecords(logDir)) {
+			if (isDateInside(after, before, record.getDate()) && record.getIp().equals(ip)) {
+				users.add(record.getUser());
+			}
+		}
+		return users;
+	}
+
+	@Override
+	public Set<String> getLoggedUsers(Date after, Date before) {
+		Set<String> users = new HashSet<>();
+		for (LogRecord record : getParsedRecords(logDir)) {
+			if (isDateInside(after, before, record.getDate()) && record.getEvent().equals(Event.LOGIN)) {
+				users.add(record.getUser());
+			}
+		}
+		return users;
+	}
+
+	@Override
+	public Set<String> getDownloadedPluginUsers(Date after, Date before) {
+		Set<String> users = new HashSet<>();
+		for (LogRecord record : getParsedRecords(logDir)) {
+			if (isDateInside(after, before, record.getDate()) && record.getEvent().equals(Event.DOWNLOAD_PLUGIN)) {
+				users.add(record.getUser());
+			}
+		}
+		return users;
+	}
+
+	@Override
+	public Set<String> getWroteMessageUsers(Date after, Date before) {
+		Set<String> users = new HashSet<>();
+		for (LogRecord record : getParsedRecords(logDir)) {
+			if (isDateInside(after, before, record.getDate()) && record.getEvent().equals(Event.WRITE_MESSAGE)) {
+				users.add(record.getUser());
+			}
+		}
+		return users;
+	}
+
+	@Override
+	public Set<String> getSolvedTaskUsers(Date after, Date before) {
+		Set<String> users = new HashSet<>();
+		for (LogRecord record : getParsedRecords(logDir)) {
+			if (isDateInside(after, before, record.getDate()) && record.getEvent().equals(Event.SOLVE_TASK)) {
+				users.add(record.getUser());
+			}
+		}
+		return users;
+	}
+
+	@Override
+	public Set<String> getSolvedTaskUsers(Date after, Date before, int task) {
+		Set<String> users = new HashSet<>();
+		for (LogRecord record : getParsedRecords(logDir)) {
+			if (isDateInside(after, before, record.getDate())
+					&& record.getEvent().equals(Event.SOLVE_TASK)
+					&& record.getTaskNumber() != null
+					&& !record.getTaskNumber().isEmpty()
+					&& Integer.parseInt(record.getTaskNumber()) == task) {
+				users.add(record.getUser());
+			}
+		}
+		return users;
+	}
+
+	@Override
+	public Set<String> getDoneTaskUsers(Date after, Date before) {
+		Set<String> users = new HashSet<>();
+		for (LogRecord record : getParsedRecords(logDir)) {
+			if (isDateInside(after, before, record.getDate()) && record.getEvent().equals(Event.DONE_TASK)) {
+				users.add(record.getUser());
+			}
+		}
+		return users;
+	}
+
+	@Override
+	public Set<String> getDoneTaskUsers(Date after, Date before, int task) {
+		Set<String> users = new HashSet<>();
+		for (LogRecord record : getParsedRecords(logDir)) {
+			if (isDateInside(after, before, record.getDate())
+					&& record.getEvent().equals(Event.DONE_TASK)
+					&& record.getTaskNumber() != null
+					&& !record.getTaskNumber().isEmpty()
+					&& Integer.parseInt(record.getTaskNumber()) == task) {
+				users.add(record.getUser());
+			}
+		}
+		return users;
+	}
 }
