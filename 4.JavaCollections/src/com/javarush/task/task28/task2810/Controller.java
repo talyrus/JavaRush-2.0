@@ -2,6 +2,7 @@ package com.javarush.task.task28.task2810;
 
 import com.javarush.task.task28.task2810.model.Provider;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -26,7 +27,7 @@ public class Controller {
 						'}';
 	}
 
-	public void scan() {
+	public void scan() throws IOException {
 		List vacancies = new ArrayList();
 		try {
 			for (Provider provider : providers) {

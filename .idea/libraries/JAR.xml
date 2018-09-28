@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="JAR">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/../Library/jsoup-jsoup-1.9.2/JAR" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/../Library/jsoup-jsoup-1.9.2/JAR" />
+    </SOURCES>
+    <jarDirectory url="file://$PROJECT_DIR$/../Library/jsoup-jsoup-1.9.2/JAR" recursive="false" />
+    <jarDirectory url="file://$PROJECT_DIR$/../Library/jsoup-jsoup-1.9.2/JAR" recursive="false" type="SOURCES" />
+  </library>
+</component>
