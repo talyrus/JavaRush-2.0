@@ -10,6 +10,10 @@ public class Provider {
 		this.strategy = strategy;
 	}
 
+	public Provider() {
+
+	}
+
 	public void setStrategy(Strategy strategy) {
 		this.strategy = strategy;
 	}
